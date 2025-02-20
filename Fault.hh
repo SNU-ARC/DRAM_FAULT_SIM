@@ -89,6 +89,9 @@ class Fault {
   
 
  public:
+ #if KJH
+  void setAddr(ADDR faultaddr) {addr = faultaddr;}
+#endif
   ADDR getAddr() { return addr; }
   ADDR getMask() { return mask; }
   std::string getName() { return name; }

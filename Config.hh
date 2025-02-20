@@ -51,6 +51,8 @@ POSSIBILITY OF SUCH DAMAGE.
 #define FIT *(0.000000001)
 #define AutogenMASK 2
 
+#define KJH (1)
+
 #if AutogenMASK == 0
 // Jaguar
 // 2GB DDR-2 DIMM -> 128MB (1Gb) x4 DDR-2 chip

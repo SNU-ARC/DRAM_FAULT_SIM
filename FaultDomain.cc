@@ -193,6 +193,214 @@ void generateCombinations(const std::vector<Fault*>& faults,
   }
 }
 
+#if KJH
+ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr) {
+  // CacheLine blkOrg = {pinsPerDevice, (devicesPerRank -(int)
+  // retiredChipIDList.size()) * pinsPerDevice - (int) retiredPinIDList.size(),
+  // blkHeight};
+  CacheLine blk = {
+      pinsPerDevice,
+      (devicesPerRank - (int)retiredChipIDList.size()) * pinsPerDevice -
+          (int)retiredPinIDList.size(),
+      blkHeight, message_config};
+  Fault *newFault;
+  ErrorType result = NE;
+  // whether we try decode errors here by inherent fault or the other error
+  // sources
+
+  //----------------------------------------------------------
+  // 1. generate a new fault
+  //----------------------------------------------------------
+  // std::string newFaultType = faultRateInfo->pickRandomType();
+  const std::pair<std::string, double> *newFaultType =
+      faultRateInfo->pickRandomType();
+
+  // whether this test caused by (intermittent) inherent faults
+  bool ByInherentFault = (newFaultType->first == "inherent") ? true : false;
+
+  if (!ByInherentFault) {
+    newFault = Fault::genRandomFault(newFaultType->first, this);
+    newFault->setAddr(faultaddr);
+
+    /*	//GONG: retirement is currently not considered with inherent faults
+        //----------------------------------------------------------
+        // check whether the fault is on a retired chip or pin
+        //----------------------------------------------------------
+        // a new fault on already retired chip -> skip
+        for (auto it = retiredChipIDList.cbegin(); it !=
+       retiredChipIDList.cend(); ++it) {
+            if (newFault->getChipID()==(*it)) {
+                delete newFault;
+                return NE;
+            }
+        }
+        // a new pin fault on already retired pin -> skip
+        if (newFault->getIsSingleDQ()) {
+            // retired pin
+            for (auto it = retiredPinIDList.cbegin(); it !=
+       retiredPinIDList.cend(); ++it) {
+                if (newFault->getPinID()==(*it)) {
+                    delete newFault;
+                    return NE;
+                }
+            }
+        }
+    */
+    // overlap_test
+    int indram = ecc->getInDRAM();
+    if ((double)rand() / RAND_MAX <=
+        faultRateInfo->overlap_prob(newFault->getName())) {
+      newFault->overlapped = true;
+    } else {
+      newFault->overlapped = false;
+    }
+
+#if 1
+    operationalFaultList.push_back(newFault);
+
+  } else {
+    // GONG: we do not generate a new fault.
+    if (operationalFaultList.size() > 0) {
+      auto it = operationalFaultList.crbegin();
+      newFault = (*it);  // operationalFaultList.begin();
+    } else {
+      // no operational fault yet.
+      blk.reset();
+      if (inherentFault != NULL)
+        inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
+                                       ecc->chipRand);
+      return worseErrorType(result, ecc->decode(this, blk));
+    }
+  }
+  int overlap_level = 0;
+
+  //----------------------------------------------------------
+  // 3. check overlapping previous fault
+  // - check the most severe one
+  //----------------------------------------------------------
+  currentPossibleFaultList.clear();
+  activeFaultList.clear();
+  activeFaultList.push_back(newFault);
+  //Simplified version for multiple overlaps
+  auto it1 = operationalFaultList.crbegin();
+  bool overlap = false;
+  for (++it1; it1 != operationalFaultList.crend(); ++it1) {
+    if ((*it1)->overlap(newFault)) {
+      overlap = true;
+      currentPossibleFaultList.push_back(*it1);
+      activeFaultList.push_back(*it1);
+    }
+  }
+  if (!overlap) {
+    blk.reset();
+    if (ByInherentFault) {
+      inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
+                                    ecc->chipRand);
+    } else if (inherentFault != NULL) {
+      inherentFault->genRandomError(&blk);
+    }
+
+    newFault->genRandomError(&blk);
+    result = worseErrorType(result, ecc->decode(this, blk));
+  } else {
+    std::vector<Fault*> overlappedFaults = currentPossibleFaultList;
+    overlappedFaults.push_back(newFault);
+    std::vector<std::vector<Fault*>> combinations;
+    generateCombinations(overlappedFaults, combinations);
+
+    for (const auto& combo : combinations) {
+      bool overlap = true;
+      for (const auto& fault : combo) {
+        if (!fault->overlap(combo.front())) {
+          overlap = false;
+          break;
+        }
+      }
+      if (overlap) {
+        blk.reset();
+        if (ByInherentFault) {
+          inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
+                                        ecc->chipRand);
+        } else if (inherentFault != NULL) {
+          inherentFault->genRandomError(&blk);
+        }
+        // get length of combo
+        
+        for (const auto& fault : combo) {
+          fault->genRandomError(&blk);
+        }
+        result = worseErrorType(result, ecc->decode(this, blk));
+      }
+    }
+  }
+
+
+  //GONG: fine-grained retirement is currently inactive/ignored.
+  if ((result==CE)&&ecc->getDoRetire()&&ecc->needRetire(this, newFault))
+  {
+    if (ecc->getMaxRetiredBlkCount() > 
+                      retiredBlkCount+newFault->getAffectedBlkCount()){
+      if (newFault->getAffectedBlkCount() >0 ){
+        retiredBlkCount += newFault->getAffectedBlkCount();
+        operationalFaultList.remove(newFault);
+        activeFaultList.remove(newFault);
+        delete newFault;
+      }
+    }else{
+      retiredBlkCount = ecc->getMaxRetiredBlkCount();
+      // printf("%s need %llu / %llu\n",
+      //  newFaultType->first.c_str(),newFault->getAffectedBlkCount(),
+      //  ecc->getMaxRetiredBlkCount()-retiredBlkCount);
+    }
+  }
+
+  return result;
+#else
+    auto faultEnd = operationalFaultList.rend();
+    for (auto it1 = operationalFaultList.rbegin(); it1 != faultEnd; ++it1) {
+      Fault *fault1 = *it1;
+
+      fault1->genRandomError(&blk);
+      result = ecc->decode(this, blk);
+      if (result == SDC) return SDC;
+
+      auto it2 = it1;
+      for (++it2; it2 != faultEnd; ++it2) {
+        Fault *fault2 = (*it2);
+
+        if (fault2->overlap(fault1)) {
+          fault2->genRandomError(&blk);
+          result = worseErrorType(result, ecc->decode(this, blk));
+          if (result == SDC) return SDC;
+
+          auto it3 = it2;
+          for (++it3; it3 != faultEnd; ++it3) {
+            Fault *fault3 = (*it3);
+            if (fault3->overlap(fault1) && fault3->overlap(fault2)) {
+              fault3->genRandomError(&blk);
+              result = worseErrorType(result, ecc->decode(this, blk));
+              if (result == SDC) return SDC;
+
+              auto it4 = it3;
+              for (++it4; it4 != faultEnd; ++it4) {
+                Fault *fault4 = (*it4);
+                if (fault4->overlap(fault1) && fault4->overlap(fault2) &&
+                    fault4->overlap(fault3)) {
+                  fault4->genRandomError(&blk);
+                  result = worseErrorType(result, ecc->decode(this, blk));
+                  if (result == SDC) return SDC;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    return result;
+#endif
+}
+#else
 ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc) {
   // CacheLine blkOrg = {pinsPerDevice, (devicesPerRank -(int)
   // retiredChipIDList.size()) * pinsPerDevice - (int) retiredPinIDList.size(),
@@ -398,6 +606,7 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc) {
     return result;
 #endif
 }
+#endif
 
 void FaultDomain::resetInherentFault(Fault *fault, ECC *ecc) {
   faultRateInfo->removeLastRate();

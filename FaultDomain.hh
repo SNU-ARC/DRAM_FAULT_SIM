@@ -169,9 +169,13 @@ class FaultDomain {
       bool chipOverlapCheck = true);  // For fault generation based on scenario
   //! Fault generation and Test for a system
   /*! \param ecc ECC pointer */
+#if KJH
+  ErrorType genSystemRandomFaultAndTest(
+      ECC *ecc, ADDR faultaddr);  // For fault generation based on fault rates
+#else
   ErrorType genSystemRandomFaultAndTest(
       ECC *ecc);  // For fault generation based on fault rates
-
+#endif
   void retirePin(int pinID);
   void retireChip(int chipID);
 

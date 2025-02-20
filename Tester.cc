@@ -118,6 +118,66 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
   Fault *inherentFault = NULL;
   // create log file
   std::string nameBuffer = std::string(filePrefix) + ".S";
+
+#if KJH
+  printf("KJH Option Enabled!\n");
+  sleep(5);
+  FILE *file = fopen("address.map", "r"); // open address.map
+  assert(file != NULL);
+  if (!file) {
+      perror("Can not Open File");
+      return;
+  }
+  
+  size_t address_cnt = 0;
+  if (fscanf(file, "%zu", &address_cnt) != 1) {
+      fprintf(stderr, "Invalid Address Count\n");
+      fclose(file);
+      return;
+  }
+  
+  uintptr_t *addresses = (uintptr_t *)malloc(address_cnt * sizeof(uintptr_t));
+  if (!addresses) {
+      perror("메모리 할당 실패");
+      fclose(file);
+      return;
+  }
+  
+  size_t count = 0;
+  unsigned long address;
+  
+  while (fscanf(file, "%lx", &address) == 1) {
+      if (count < address_cnt) {
+          addresses[count++] = (uintptr_t)address;
+      } else {
+          fprintf(stderr, "Address Count Overflow\n");
+          break;
+      }
+  }
+  
+  fclose(file);
+
+  unsigned long cnt = 0;
+  unsigned long address;
+  char type;
+  FILE *file = fopen("log_1M.final", "r"); // Open log_1M.final
+  if (!file) {
+      perror("Can not open file!!!\n");
+      return;
+  }
+      
+  while (fscanf(file, "%lx %c", &address, &type) == 2) {
+    // Check Fail function Insert
+    printf("%lx %c\n", address, type);
+    cnt++;
+  }
+
+  printf("Total Log Count : %ld\n", cnt);
+#else 
+  printf("KJH Option Disabled!\n");
+  sleep(5);
+#endif
+
   if (faultCount == 2)
   {
     nameBuffer = nameBuffer + "." + faults[0];
