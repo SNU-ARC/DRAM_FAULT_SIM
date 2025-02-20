@@ -1,0 +1,3 @@
+/home/kjh/Documents/kjh/DRAM_FAULT_SIM/CMakeFiles/faulterrorsim.dir
+/home/kjh/Documents/kjh/DRAM_FAULT_SIM/CMakeFiles/edit_cache.dir
+/home/kjh/Documents/kjh/DRAM_FAULT_SIM/CMakeFiles/rebuild_cache.dir

@@ -158,17 +158,17 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
   fclose(file);
 
   unsigned long cnt = 0;
-  unsigned long address;
+  unsigned long trace_address;
   char type;
-  FILE *file = fopen("log_1M.final", "r"); // Open log_1M.final
-  if (!file) {
+  FILE *trace_file = fopen("log_1M.final", "r"); // Open log_1M.final
+  if (!trace_file) {
       perror("Can not open file!!!\n");
       return;
   }
       
-  while (fscanf(file, "%lx %c", &address, &type) == 2) {
+  while (fscanf(file, "%lx %c", &trace_address, &type) == 2) {
     // Check Fail function Insert
-    printf("%lx %c\n", address, type);
+    printf("%lx %c\n", trace_address, type);
     cnt++;
   }
 
@@ -287,7 +287,12 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
       scrubber->scrub(dg, hr);
 
       // 4. generate an error and decode it
+#if KJH
+      ADDR faultaddr = addresses[rand() % address_cnt] * 4096;
+      ErrorType result = fd->genSystemRandomFaultAndTest(ecc, faultaddr);
+#else
       ErrorType result = fd->genSystemRandomFaultAndTest(ecc);
+#endif
 
       // GONG: update inherent fault
       dg->updateInherentFault(ecc);
