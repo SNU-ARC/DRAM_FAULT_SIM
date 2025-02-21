@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kjh/Documents/kjh/DRAM_FAULT_SIM
+CMAKE_SOURCE_DIR = /root/DRAM_FAULT_SIM
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build
+CMAKE_BINARY_DIR = /root/DRAM_FAULT_SIM/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/DRAM_FAULT_SIM/build/CMakeFiles /root/DRAM_FAULT_SIM/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/DRAM_FAULT_SIM/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -293,6 +293,21 @@ LOT.i:
 LOT.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/faulterrorsim.dir/build.make CMakeFiles/faulterrorsim.dir/LOT.s
 .PHONY : LOT.s
+
+# target to build an object file
+Mirror.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/faulterrorsim.dir/build.make CMakeFiles/faulterrorsim.dir/Mirror.o
+.PHONY : Mirror.o
+
+# target to preprocess a source file
+Mirror.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/faulterrorsim.dir/build.make CMakeFiles/faulterrorsim.dir/Mirror.i
+.PHONY : Mirror.i
+
+# target to generate assembly for a file
+Mirror.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/faulterrorsim.dir/build.make CMakeFiles/faulterrorsim.dir/Mirror.s
+.PHONY : Mirror.s
 
 # target to build an object file
 MultiECC.o:
@@ -561,6 +576,9 @@ help:
 	@echo "... LOT.o"
 	@echo "... LOT.i"
 	@echo "... LOT.s"
+	@echo "... Mirror.o"
+	@echo "... Mirror.i"
+	@echo "... Mirror.s"
 	@echo "... MultiECC.o"
 	@echo "... MultiECC.i"
 	@echo "... MultiECC.s"

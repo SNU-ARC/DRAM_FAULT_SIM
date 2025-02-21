@@ -51,6 +51,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "Tester.hh"
 #include "codec.hh"
 #include "rs.hh"
+#include "Mirror.hh"
 
 volatile bool killflag = false;
 
@@ -160,6 +161,8 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
   unsigned long cnt = 0;
   unsigned long trace_address;
   char type;
+  // [MSW]
+  MirrorModule* mirror_module = new MirrorModule();
   FILE *trace_file = fopen("log_1M.final", "r"); // Open log_1M.final
   if (!trace_file) {
       perror("Can not open file!!!\n");
@@ -168,6 +171,8 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
       
   while (fscanf(file, "%lx %c", &trace_address, &type) == 2) {
     // Check Fail function Insert
+    if(type == 'A')
+      mirror_module->access(trace_address, ANON_PAGE);
     printf("%lx %c\n", trace_address, type);
     cnt++;
   }

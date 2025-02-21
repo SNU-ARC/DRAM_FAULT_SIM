@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/faulterrorsim.dir/Huawei.o.d"
   "CMakeFiles/faulterrorsim.dir/LOT.o"
   "CMakeFiles/faulterrorsim.dir/LOT.o.d"
+  "CMakeFiles/faulterrorsim.dir/Mirror.o"
+  "CMakeFiles/faulterrorsim.dir/Mirror.o.d"
   "CMakeFiles/faulterrorsim.dir/MultiECC.o"
   "CMakeFiles/faulterrorsim.dir/MultiECC.o.d"
   "CMakeFiles/faulterrorsim.dir/REGB.o"

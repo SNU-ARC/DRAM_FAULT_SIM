@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kjh/Documents/kjh/DRAM_FAULT_SIM
+CMAKE_SOURCE_DIR = /root/DRAM_FAULT_SIM
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build
+CMAKE_BINARY_DIR = /root/DRAM_FAULT_SIM/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/faulterrorsim.dir/clean
 CMakeFiles/faulterrorsim.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/faulterrorsim.dir/build.make CMakeFiles/faulterrorsim.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/faulterrorsim.dir/build.make CMakeFiles/faulterrorsim.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27 "Built target faulterrorsim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28 "Built target faulterrorsim"
 .PHONY : CMakeFiles/faulterrorsim.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/faulterrorsim.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles 27
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/DRAM_FAULT_SIM/build/CMakeFiles 28
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/faulterrorsim.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/DRAM_FAULT_SIM/build/CMakeFiles 0
 .PHONY : CMakeFiles/faulterrorsim.dir/rule
 
 # Convenience name for target.

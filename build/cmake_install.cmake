@@ -1,4 +1,4 @@
-# Install script for directory: /home/kjh/Documents/kjh/DRAM_FAULT_SIM
+# Install script for directory: /root/DRAM_FAULT_SIM
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/root/DRAM_FAULT_SIM/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

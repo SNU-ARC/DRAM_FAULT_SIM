@@ -35,4 +35,5 @@ XED.cc
 FlipCorrection.cc
 Config.cc
 uint128_t.cpp
+Mirror.cc
 )

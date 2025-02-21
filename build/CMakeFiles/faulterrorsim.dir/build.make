@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kjh/Documents/kjh/DRAM_FAULT_SIM
+CMAKE_SOURCE_DIR = /root/DRAM_FAULT_SIM
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build
+CMAKE_BINARY_DIR = /root/DRAM_FAULT_SIM/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/faulterrorsim.dir/depend.make
@@ -72,366 +72,380 @@ include CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/Bamboo.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/Bamboo.o: ../Bamboo.cc
 CMakeFiles/faulterrorsim.dir/Bamboo.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/faulterrorsim.dir/Bamboo.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Bamboo.o -MF CMakeFiles/faulterrorsim.dir/Bamboo.o.d -o CMakeFiles/faulterrorsim.dir/Bamboo.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Bamboo.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/faulterrorsim.dir/Bamboo.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Bamboo.o -MF CMakeFiles/faulterrorsim.dir/Bamboo.o.d -o CMakeFiles/faulterrorsim.dir/Bamboo.o -c /root/DRAM_FAULT_SIM/Bamboo.cc
 
 CMakeFiles/faulterrorsim.dir/Bamboo.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/Bamboo.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Bamboo.cc > CMakeFiles/faulterrorsim.dir/Bamboo.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/Bamboo.cc > CMakeFiles/faulterrorsim.dir/Bamboo.i
 
 CMakeFiles/faulterrorsim.dir/Bamboo.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/Bamboo.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Bamboo.cc -o CMakeFiles/faulterrorsim.dir/Bamboo.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/Bamboo.cc -o CMakeFiles/faulterrorsim.dir/Bamboo.s
 
 CMakeFiles/faulterrorsim.dir/binary_linear_codec.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/binary_linear_codec.o: ../binary_linear_codec.cc
 CMakeFiles/faulterrorsim.dir/binary_linear_codec.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/faulterrorsim.dir/binary_linear_codec.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/binary_linear_codec.o -MF CMakeFiles/faulterrorsim.dir/binary_linear_codec.o.d -o CMakeFiles/faulterrorsim.dir/binary_linear_codec.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/binary_linear_codec.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/faulterrorsim.dir/binary_linear_codec.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/binary_linear_codec.o -MF CMakeFiles/faulterrorsim.dir/binary_linear_codec.o.d -o CMakeFiles/faulterrorsim.dir/binary_linear_codec.o -c /root/DRAM_FAULT_SIM/binary_linear_codec.cc
 
 CMakeFiles/faulterrorsim.dir/binary_linear_codec.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/binary_linear_codec.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/binary_linear_codec.cc > CMakeFiles/faulterrorsim.dir/binary_linear_codec.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/binary_linear_codec.cc > CMakeFiles/faulterrorsim.dir/binary_linear_codec.i
 
 CMakeFiles/faulterrorsim.dir/binary_linear_codec.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/binary_linear_codec.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/binary_linear_codec.cc -o CMakeFiles/faulterrorsim.dir/binary_linear_codec.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/binary_linear_codec.cc -o CMakeFiles/faulterrorsim.dir/binary_linear_codec.s
 
 CMakeFiles/faulterrorsim.dir/DomainGroup.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/DomainGroup.o: ../DomainGroup.cc
 CMakeFiles/faulterrorsim.dir/DomainGroup.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/faulterrorsim.dir/DomainGroup.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/DomainGroup.o -MF CMakeFiles/faulterrorsim.dir/DomainGroup.o.d -o CMakeFiles/faulterrorsim.dir/DomainGroup.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/DomainGroup.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/faulterrorsim.dir/DomainGroup.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/DomainGroup.o -MF CMakeFiles/faulterrorsim.dir/DomainGroup.o.d -o CMakeFiles/faulterrorsim.dir/DomainGroup.o -c /root/DRAM_FAULT_SIM/DomainGroup.cc
 
 CMakeFiles/faulterrorsim.dir/DomainGroup.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/DomainGroup.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/DomainGroup.cc > CMakeFiles/faulterrorsim.dir/DomainGroup.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/DomainGroup.cc > CMakeFiles/faulterrorsim.dir/DomainGroup.i
 
 CMakeFiles/faulterrorsim.dir/DomainGroup.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/DomainGroup.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/DomainGroup.cc -o CMakeFiles/faulterrorsim.dir/DomainGroup.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/DomainGroup.cc -o CMakeFiles/faulterrorsim.dir/DomainGroup.s
 
 CMakeFiles/faulterrorsim.dir/DUO.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/DUO.o: ../DUO.cc
 CMakeFiles/faulterrorsim.dir/DUO.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/faulterrorsim.dir/DUO.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/DUO.o -MF CMakeFiles/faulterrorsim.dir/DUO.o.d -o CMakeFiles/faulterrorsim.dir/DUO.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/DUO.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/faulterrorsim.dir/DUO.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/DUO.o -MF CMakeFiles/faulterrorsim.dir/DUO.o.d -o CMakeFiles/faulterrorsim.dir/DUO.o -c /root/DRAM_FAULT_SIM/DUO.cc
 
 CMakeFiles/faulterrorsim.dir/DUO.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/DUO.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/DUO.cc > CMakeFiles/faulterrorsim.dir/DUO.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/DUO.cc > CMakeFiles/faulterrorsim.dir/DUO.i
 
 CMakeFiles/faulterrorsim.dir/DUO.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/DUO.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/DUO.cc -o CMakeFiles/faulterrorsim.dir/DUO.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/DUO.cc -o CMakeFiles/faulterrorsim.dir/DUO.s
 
 CMakeFiles/faulterrorsim.dir/ECC.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/ECC.o: ../ECC.cc
 CMakeFiles/faulterrorsim.dir/ECC.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/faulterrorsim.dir/ECC.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/ECC.o -MF CMakeFiles/faulterrorsim.dir/ECC.o.d -o CMakeFiles/faulterrorsim.dir/ECC.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/ECC.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/faulterrorsim.dir/ECC.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/ECC.o -MF CMakeFiles/faulterrorsim.dir/ECC.o.d -o CMakeFiles/faulterrorsim.dir/ECC.o -c /root/DRAM_FAULT_SIM/ECC.cc
 
 CMakeFiles/faulterrorsim.dir/ECC.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/ECC.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/ECC.cc > CMakeFiles/faulterrorsim.dir/ECC.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/ECC.cc > CMakeFiles/faulterrorsim.dir/ECC.i
 
 CMakeFiles/faulterrorsim.dir/ECC.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/ECC.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/ECC.cc -o CMakeFiles/faulterrorsim.dir/ECC.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/ECC.cc -o CMakeFiles/faulterrorsim.dir/ECC.s
 
 CMakeFiles/faulterrorsim.dir/Fault.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/Fault.o: ../Fault.cc
 CMakeFiles/faulterrorsim.dir/Fault.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/faulterrorsim.dir/Fault.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Fault.o -MF CMakeFiles/faulterrorsim.dir/Fault.o.d -o CMakeFiles/faulterrorsim.dir/Fault.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Fault.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/faulterrorsim.dir/Fault.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Fault.o -MF CMakeFiles/faulterrorsim.dir/Fault.o.d -o CMakeFiles/faulterrorsim.dir/Fault.o -c /root/DRAM_FAULT_SIM/Fault.cc
 
 CMakeFiles/faulterrorsim.dir/Fault.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/Fault.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Fault.cc > CMakeFiles/faulterrorsim.dir/Fault.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/Fault.cc > CMakeFiles/faulterrorsim.dir/Fault.i
 
 CMakeFiles/faulterrorsim.dir/Fault.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/Fault.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Fault.cc -o CMakeFiles/faulterrorsim.dir/Fault.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/Fault.cc -o CMakeFiles/faulterrorsim.dir/Fault.s
 
 CMakeFiles/faulterrorsim.dir/FaultDomain.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/FaultDomain.o: ../FaultDomain.cc
 CMakeFiles/faulterrorsim.dir/FaultDomain.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/faulterrorsim.dir/FaultDomain.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/FaultDomain.o -MF CMakeFiles/faulterrorsim.dir/FaultDomain.o.d -o CMakeFiles/faulterrorsim.dir/FaultDomain.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/FaultDomain.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/faulterrorsim.dir/FaultDomain.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/FaultDomain.o -MF CMakeFiles/faulterrorsim.dir/FaultDomain.o.d -o CMakeFiles/faulterrorsim.dir/FaultDomain.o -c /root/DRAM_FAULT_SIM/FaultDomain.cc
 
 CMakeFiles/faulterrorsim.dir/FaultDomain.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/FaultDomain.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/FaultDomain.cc > CMakeFiles/faulterrorsim.dir/FaultDomain.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/FaultDomain.cc > CMakeFiles/faulterrorsim.dir/FaultDomain.i
 
 CMakeFiles/faulterrorsim.dir/FaultDomain.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/FaultDomain.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/FaultDomain.cc -o CMakeFiles/faulterrorsim.dir/FaultDomain.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/FaultDomain.cc -o CMakeFiles/faulterrorsim.dir/FaultDomain.s
 
 CMakeFiles/faulterrorsim.dir/FaultRateInfo.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/FaultRateInfo.o: ../FaultRateInfo.cc
 CMakeFiles/faulterrorsim.dir/FaultRateInfo.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/faulterrorsim.dir/FaultRateInfo.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/FaultRateInfo.o -MF CMakeFiles/faulterrorsim.dir/FaultRateInfo.o.d -o CMakeFiles/faulterrorsim.dir/FaultRateInfo.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/FaultRateInfo.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/faulterrorsim.dir/FaultRateInfo.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/FaultRateInfo.o -MF CMakeFiles/faulterrorsim.dir/FaultRateInfo.o.d -o CMakeFiles/faulterrorsim.dir/FaultRateInfo.o -c /root/DRAM_FAULT_SIM/FaultRateInfo.cc
 
 CMakeFiles/faulterrorsim.dir/FaultRateInfo.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/FaultRateInfo.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/FaultRateInfo.cc > CMakeFiles/faulterrorsim.dir/FaultRateInfo.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/FaultRateInfo.cc > CMakeFiles/faulterrorsim.dir/FaultRateInfo.i
 
 CMakeFiles/faulterrorsim.dir/FaultRateInfo.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/FaultRateInfo.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/FaultRateInfo.cc -o CMakeFiles/faulterrorsim.dir/FaultRateInfo.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/FaultRateInfo.cc -o CMakeFiles/faulterrorsim.dir/FaultRateInfo.s
 
 CMakeFiles/faulterrorsim.dir/gf.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/gf.o: ../gf.cc
 CMakeFiles/faulterrorsim.dir/gf.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/faulterrorsim.dir/gf.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/gf.o -MF CMakeFiles/faulterrorsim.dir/gf.o.d -o CMakeFiles/faulterrorsim.dir/gf.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/gf.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/faulterrorsim.dir/gf.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/gf.o -MF CMakeFiles/faulterrorsim.dir/gf.o.d -o CMakeFiles/faulterrorsim.dir/gf.o -c /root/DRAM_FAULT_SIM/gf.cc
 
 CMakeFiles/faulterrorsim.dir/gf.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/gf.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/gf.cc > CMakeFiles/faulterrorsim.dir/gf.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/gf.cc > CMakeFiles/faulterrorsim.dir/gf.i
 
 CMakeFiles/faulterrorsim.dir/gf.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/gf.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/gf.cc -o CMakeFiles/faulterrorsim.dir/gf.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/gf.cc -o CMakeFiles/faulterrorsim.dir/gf.s
 
 CMakeFiles/faulterrorsim.dir/hsiao.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/hsiao.o: ../hsiao.cc
 CMakeFiles/faulterrorsim.dir/hsiao.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/faulterrorsim.dir/hsiao.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/hsiao.o -MF CMakeFiles/faulterrorsim.dir/hsiao.o.d -o CMakeFiles/faulterrorsim.dir/hsiao.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/hsiao.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/faulterrorsim.dir/hsiao.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/hsiao.o -MF CMakeFiles/faulterrorsim.dir/hsiao.o.d -o CMakeFiles/faulterrorsim.dir/hsiao.o -c /root/DRAM_FAULT_SIM/hsiao.cc
 
 CMakeFiles/faulterrorsim.dir/hsiao.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/hsiao.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/hsiao.cc > CMakeFiles/faulterrorsim.dir/hsiao.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/hsiao.cc > CMakeFiles/faulterrorsim.dir/hsiao.i
 
 CMakeFiles/faulterrorsim.dir/hsiao.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/hsiao.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/hsiao.cc -o CMakeFiles/faulterrorsim.dir/hsiao.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/hsiao.cc -o CMakeFiles/faulterrorsim.dir/hsiao.s
 
 CMakeFiles/faulterrorsim.dir/Huawei.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/Huawei.o: ../Huawei.cc
 CMakeFiles/faulterrorsim.dir/Huawei.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/faulterrorsim.dir/Huawei.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Huawei.o -MF CMakeFiles/faulterrorsim.dir/Huawei.o.d -o CMakeFiles/faulterrorsim.dir/Huawei.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Huawei.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/faulterrorsim.dir/Huawei.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Huawei.o -MF CMakeFiles/faulterrorsim.dir/Huawei.o.d -o CMakeFiles/faulterrorsim.dir/Huawei.o -c /root/DRAM_FAULT_SIM/Huawei.cc
 
 CMakeFiles/faulterrorsim.dir/Huawei.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/Huawei.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Huawei.cc > CMakeFiles/faulterrorsim.dir/Huawei.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/Huawei.cc > CMakeFiles/faulterrorsim.dir/Huawei.i
 
 CMakeFiles/faulterrorsim.dir/Huawei.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/Huawei.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Huawei.cc -o CMakeFiles/faulterrorsim.dir/Huawei.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/Huawei.cc -o CMakeFiles/faulterrorsim.dir/Huawei.s
 
 CMakeFiles/faulterrorsim.dir/linear_codec.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/linear_codec.o: ../linear_codec.cc
 CMakeFiles/faulterrorsim.dir/linear_codec.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/faulterrorsim.dir/linear_codec.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/linear_codec.o -MF CMakeFiles/faulterrorsim.dir/linear_codec.o.d -o CMakeFiles/faulterrorsim.dir/linear_codec.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/linear_codec.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/faulterrorsim.dir/linear_codec.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/linear_codec.o -MF CMakeFiles/faulterrorsim.dir/linear_codec.o.d -o CMakeFiles/faulterrorsim.dir/linear_codec.o -c /root/DRAM_FAULT_SIM/linear_codec.cc
 
 CMakeFiles/faulterrorsim.dir/linear_codec.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/linear_codec.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/linear_codec.cc > CMakeFiles/faulterrorsim.dir/linear_codec.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/linear_codec.cc > CMakeFiles/faulterrorsim.dir/linear_codec.i
 
 CMakeFiles/faulterrorsim.dir/linear_codec.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/linear_codec.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/linear_codec.cc -o CMakeFiles/faulterrorsim.dir/linear_codec.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/linear_codec.cc -o CMakeFiles/faulterrorsim.dir/linear_codec.s
 
 CMakeFiles/faulterrorsim.dir/LOT.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/LOT.o: ../LOT.cc
 CMakeFiles/faulterrorsim.dir/LOT.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/faulterrorsim.dir/LOT.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/LOT.o -MF CMakeFiles/faulterrorsim.dir/LOT.o.d -o CMakeFiles/faulterrorsim.dir/LOT.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/LOT.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/faulterrorsim.dir/LOT.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/LOT.o -MF CMakeFiles/faulterrorsim.dir/LOT.o.d -o CMakeFiles/faulterrorsim.dir/LOT.o -c /root/DRAM_FAULT_SIM/LOT.cc
 
 CMakeFiles/faulterrorsim.dir/LOT.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/LOT.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/LOT.cc > CMakeFiles/faulterrorsim.dir/LOT.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/LOT.cc > CMakeFiles/faulterrorsim.dir/LOT.i
 
 CMakeFiles/faulterrorsim.dir/LOT.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/LOT.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/LOT.cc -o CMakeFiles/faulterrorsim.dir/LOT.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/LOT.cc -o CMakeFiles/faulterrorsim.dir/LOT.s
 
 CMakeFiles/faulterrorsim.dir/main.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/main.o: ../main.cc
 CMakeFiles/faulterrorsim.dir/main.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/faulterrorsim.dir/main.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/main.o -MF CMakeFiles/faulterrorsim.dir/main.o.d -o CMakeFiles/faulterrorsim.dir/main.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/main.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/faulterrorsim.dir/main.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/main.o -MF CMakeFiles/faulterrorsim.dir/main.o.d -o CMakeFiles/faulterrorsim.dir/main.o -c /root/DRAM_FAULT_SIM/main.cc
 
 CMakeFiles/faulterrorsim.dir/main.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/main.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/main.cc > CMakeFiles/faulterrorsim.dir/main.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/main.cc > CMakeFiles/faulterrorsim.dir/main.i
 
 CMakeFiles/faulterrorsim.dir/main.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/main.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/main.cc -o CMakeFiles/faulterrorsim.dir/main.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/main.cc -o CMakeFiles/faulterrorsim.dir/main.s
 
 CMakeFiles/faulterrorsim.dir/message.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/message.o: ../message.cc
 CMakeFiles/faulterrorsim.dir/message.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/faulterrorsim.dir/message.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/message.o -MF CMakeFiles/faulterrorsim.dir/message.o.d -o CMakeFiles/faulterrorsim.dir/message.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/message.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/faulterrorsim.dir/message.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/message.o -MF CMakeFiles/faulterrorsim.dir/message.o.d -o CMakeFiles/faulterrorsim.dir/message.o -c /root/DRAM_FAULT_SIM/message.cc
 
 CMakeFiles/faulterrorsim.dir/message.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/message.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/message.cc > CMakeFiles/faulterrorsim.dir/message.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/message.cc > CMakeFiles/faulterrorsim.dir/message.i
 
 CMakeFiles/faulterrorsim.dir/message.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/message.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/message.cc -o CMakeFiles/faulterrorsim.dir/message.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/message.cc -o CMakeFiles/faulterrorsim.dir/message.s
 
 CMakeFiles/faulterrorsim.dir/MultiECC.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/MultiECC.o: ../MultiECC.cc
 CMakeFiles/faulterrorsim.dir/MultiECC.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/faulterrorsim.dir/MultiECC.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/MultiECC.o -MF CMakeFiles/faulterrorsim.dir/MultiECC.o.d -o CMakeFiles/faulterrorsim.dir/MultiECC.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/MultiECC.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/faulterrorsim.dir/MultiECC.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/MultiECC.o -MF CMakeFiles/faulterrorsim.dir/MultiECC.o.d -o CMakeFiles/faulterrorsim.dir/MultiECC.o -c /root/DRAM_FAULT_SIM/MultiECC.cc
 
 CMakeFiles/faulterrorsim.dir/MultiECC.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/MultiECC.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/MultiECC.cc > CMakeFiles/faulterrorsim.dir/MultiECC.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/MultiECC.cc > CMakeFiles/faulterrorsim.dir/MultiECC.i
 
 CMakeFiles/faulterrorsim.dir/MultiECC.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/MultiECC.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/MultiECC.cc -o CMakeFiles/faulterrorsim.dir/MultiECC.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/MultiECC.cc -o CMakeFiles/faulterrorsim.dir/MultiECC.s
 
 CMakeFiles/faulterrorsim.dir/prior.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/prior.o: ../prior.cc
 CMakeFiles/faulterrorsim.dir/prior.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/faulterrorsim.dir/prior.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/prior.o -MF CMakeFiles/faulterrorsim.dir/prior.o.d -o CMakeFiles/faulterrorsim.dir/prior.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/prior.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/faulterrorsim.dir/prior.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/prior.o -MF CMakeFiles/faulterrorsim.dir/prior.o.d -o CMakeFiles/faulterrorsim.dir/prior.o -c /root/DRAM_FAULT_SIM/prior.cc
 
 CMakeFiles/faulterrorsim.dir/prior.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/prior.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/prior.cc > CMakeFiles/faulterrorsim.dir/prior.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/prior.cc > CMakeFiles/faulterrorsim.dir/prior.i
 
 CMakeFiles/faulterrorsim.dir/prior.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/prior.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/prior.cc -o CMakeFiles/faulterrorsim.dir/prior.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/prior.cc -o CMakeFiles/faulterrorsim.dir/prior.s
 
 CMakeFiles/faulterrorsim.dir/REGB.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/REGB.o: ../REGB.cc
 CMakeFiles/faulterrorsim.dir/REGB.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/faulterrorsim.dir/REGB.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/REGB.o -MF CMakeFiles/faulterrorsim.dir/REGB.o.d -o CMakeFiles/faulterrorsim.dir/REGB.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/REGB.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/faulterrorsim.dir/REGB.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/REGB.o -MF CMakeFiles/faulterrorsim.dir/REGB.o.d -o CMakeFiles/faulterrorsim.dir/REGB.o -c /root/DRAM_FAULT_SIM/REGB.cc
 
 CMakeFiles/faulterrorsim.dir/REGB.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/REGB.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/REGB.cc > CMakeFiles/faulterrorsim.dir/REGB.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/REGB.cc > CMakeFiles/faulterrorsim.dir/REGB.i
 
 CMakeFiles/faulterrorsim.dir/REGB.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/REGB.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/REGB.cc -o CMakeFiles/faulterrorsim.dir/REGB.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/REGB.cc -o CMakeFiles/faulterrorsim.dir/REGB.s
 
 CMakeFiles/faulterrorsim.dir/sec.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/sec.o: ../sec.cc
 CMakeFiles/faulterrorsim.dir/sec.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/faulterrorsim.dir/sec.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/sec.o -MF CMakeFiles/faulterrorsim.dir/sec.o.d -o CMakeFiles/faulterrorsim.dir/sec.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/sec.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/faulterrorsim.dir/sec.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/sec.o -MF CMakeFiles/faulterrorsim.dir/sec.o.d -o CMakeFiles/faulterrorsim.dir/sec.o -c /root/DRAM_FAULT_SIM/sec.cc
 
 CMakeFiles/faulterrorsim.dir/sec.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/sec.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/sec.cc > CMakeFiles/faulterrorsim.dir/sec.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/sec.cc > CMakeFiles/faulterrorsim.dir/sec.i
 
 CMakeFiles/faulterrorsim.dir/sec.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/sec.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/sec.cc -o CMakeFiles/faulterrorsim.dir/sec.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/sec.cc -o CMakeFiles/faulterrorsim.dir/sec.s
 
 CMakeFiles/faulterrorsim.dir/Tester.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/Tester.o: ../Tester.cc
 CMakeFiles/faulterrorsim.dir/Tester.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/faulterrorsim.dir/Tester.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Tester.o -MF CMakeFiles/faulterrorsim.dir/Tester.o.d -o CMakeFiles/faulterrorsim.dir/Tester.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Tester.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/faulterrorsim.dir/Tester.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Tester.o -MF CMakeFiles/faulterrorsim.dir/Tester.o.d -o CMakeFiles/faulterrorsim.dir/Tester.o -c /root/DRAM_FAULT_SIM/Tester.cc
 
 CMakeFiles/faulterrorsim.dir/Tester.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/Tester.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Tester.cc > CMakeFiles/faulterrorsim.dir/Tester.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/Tester.cc > CMakeFiles/faulterrorsim.dir/Tester.i
 
 CMakeFiles/faulterrorsim.dir/Tester.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/Tester.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Tester.cc -o CMakeFiles/faulterrorsim.dir/Tester.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/Tester.cc -o CMakeFiles/faulterrorsim.dir/Tester.s
 
 CMakeFiles/faulterrorsim.dir/util.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/util.o: ../util.cc
 CMakeFiles/faulterrorsim.dir/util.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/faulterrorsim.dir/util.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/util.o -MF CMakeFiles/faulterrorsim.dir/util.o.d -o CMakeFiles/faulterrorsim.dir/util.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/util.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/faulterrorsim.dir/util.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/util.o -MF CMakeFiles/faulterrorsim.dir/util.o.d -o CMakeFiles/faulterrorsim.dir/util.o -c /root/DRAM_FAULT_SIM/util.cc
 
 CMakeFiles/faulterrorsim.dir/util.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/util.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/util.cc > CMakeFiles/faulterrorsim.dir/util.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/util.cc > CMakeFiles/faulterrorsim.dir/util.i
 
 CMakeFiles/faulterrorsim.dir/util.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/util.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/util.cc -o CMakeFiles/faulterrorsim.dir/util.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/util.cc -o CMakeFiles/faulterrorsim.dir/util.s
 
 CMakeFiles/faulterrorsim.dir/VECC.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/VECC.o: ../VECC.cc
 CMakeFiles/faulterrorsim.dir/VECC.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/faulterrorsim.dir/VECC.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/VECC.o -MF CMakeFiles/faulterrorsim.dir/VECC.o.d -o CMakeFiles/faulterrorsim.dir/VECC.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/VECC.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/faulterrorsim.dir/VECC.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/VECC.o -MF CMakeFiles/faulterrorsim.dir/VECC.o.d -o CMakeFiles/faulterrorsim.dir/VECC.o -c /root/DRAM_FAULT_SIM/VECC.cc
 
 CMakeFiles/faulterrorsim.dir/VECC.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/VECC.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/VECC.cc > CMakeFiles/faulterrorsim.dir/VECC.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/VECC.cc > CMakeFiles/faulterrorsim.dir/VECC.i
 
 CMakeFiles/faulterrorsim.dir/VECC.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/VECC.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/VECC.cc -o CMakeFiles/faulterrorsim.dir/VECC.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/VECC.cc -o CMakeFiles/faulterrorsim.dir/VECC.s
 
 CMakeFiles/faulterrorsim.dir/XED.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/XED.o: ../XED.cc
 CMakeFiles/faulterrorsim.dir/XED.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/faulterrorsim.dir/XED.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/XED.o -MF CMakeFiles/faulterrorsim.dir/XED.o.d -o CMakeFiles/faulterrorsim.dir/XED.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/XED.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/faulterrorsim.dir/XED.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/XED.o -MF CMakeFiles/faulterrorsim.dir/XED.o.d -o CMakeFiles/faulterrorsim.dir/XED.o -c /root/DRAM_FAULT_SIM/XED.cc
 
 CMakeFiles/faulterrorsim.dir/XED.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/XED.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/XED.cc > CMakeFiles/faulterrorsim.dir/XED.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/XED.cc > CMakeFiles/faulterrorsim.dir/XED.i
 
 CMakeFiles/faulterrorsim.dir/XED.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/XED.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/XED.cc -o CMakeFiles/faulterrorsim.dir/XED.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/XED.cc -o CMakeFiles/faulterrorsim.dir/XED.s
 
 CMakeFiles/faulterrorsim.dir/FlipCorrection.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/FlipCorrection.o: ../FlipCorrection.cc
 CMakeFiles/faulterrorsim.dir/FlipCorrection.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/faulterrorsim.dir/FlipCorrection.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/FlipCorrection.o -MF CMakeFiles/faulterrorsim.dir/FlipCorrection.o.d -o CMakeFiles/faulterrorsim.dir/FlipCorrection.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/FlipCorrection.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/faulterrorsim.dir/FlipCorrection.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/FlipCorrection.o -MF CMakeFiles/faulterrorsim.dir/FlipCorrection.o.d -o CMakeFiles/faulterrorsim.dir/FlipCorrection.o -c /root/DRAM_FAULT_SIM/FlipCorrection.cc
 
 CMakeFiles/faulterrorsim.dir/FlipCorrection.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/FlipCorrection.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/FlipCorrection.cc > CMakeFiles/faulterrorsim.dir/FlipCorrection.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/FlipCorrection.cc > CMakeFiles/faulterrorsim.dir/FlipCorrection.i
 
 CMakeFiles/faulterrorsim.dir/FlipCorrection.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/FlipCorrection.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/FlipCorrection.cc -o CMakeFiles/faulterrorsim.dir/FlipCorrection.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/FlipCorrection.cc -o CMakeFiles/faulterrorsim.dir/FlipCorrection.s
 
 CMakeFiles/faulterrorsim.dir/Config.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/Config.o: ../Config.cc
 CMakeFiles/faulterrorsim.dir/Config.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/faulterrorsim.dir/Config.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Config.o -MF CMakeFiles/faulterrorsim.dir/Config.o.d -o CMakeFiles/faulterrorsim.dir/Config.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Config.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/faulterrorsim.dir/Config.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Config.o -MF CMakeFiles/faulterrorsim.dir/Config.o.d -o CMakeFiles/faulterrorsim.dir/Config.o -c /root/DRAM_FAULT_SIM/Config.cc
 
 CMakeFiles/faulterrorsim.dir/Config.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/Config.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Config.cc > CMakeFiles/faulterrorsim.dir/Config.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/Config.cc > CMakeFiles/faulterrorsim.dir/Config.i
 
 CMakeFiles/faulterrorsim.dir/Config.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/Config.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/Config.cc -o CMakeFiles/faulterrorsim.dir/Config.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/Config.cc -o CMakeFiles/faulterrorsim.dir/Config.s
 
 CMakeFiles/faulterrorsim.dir/uint128_t.o: CMakeFiles/faulterrorsim.dir/flags.make
 CMakeFiles/faulterrorsim.dir/uint128_t.o: ../uint128_t.cpp
 CMakeFiles/faulterrorsim.dir/uint128_t.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/faulterrorsim.dir/uint128_t.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/uint128_t.o -MF CMakeFiles/faulterrorsim.dir/uint128_t.o.d -o CMakeFiles/faulterrorsim.dir/uint128_t.o -c /home/kjh/Documents/kjh/DRAM_FAULT_SIM/uint128_t.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/faulterrorsim.dir/uint128_t.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/uint128_t.o -MF CMakeFiles/faulterrorsim.dir/uint128_t.o.d -o CMakeFiles/faulterrorsim.dir/uint128_t.o -c /root/DRAM_FAULT_SIM/uint128_t.cpp
 
 CMakeFiles/faulterrorsim.dir/uint128_t.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/uint128_t.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kjh/Documents/kjh/DRAM_FAULT_SIM/uint128_t.cpp > CMakeFiles/faulterrorsim.dir/uint128_t.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/uint128_t.cpp > CMakeFiles/faulterrorsim.dir/uint128_t.i
 
 CMakeFiles/faulterrorsim.dir/uint128_t.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/uint128_t.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kjh/Documents/kjh/DRAM_FAULT_SIM/uint128_t.cpp -o CMakeFiles/faulterrorsim.dir/uint128_t.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/uint128_t.cpp -o CMakeFiles/faulterrorsim.dir/uint128_t.s
+
+CMakeFiles/faulterrorsim.dir/Mirror.o: CMakeFiles/faulterrorsim.dir/flags.make
+CMakeFiles/faulterrorsim.dir/Mirror.o: ../Mirror.cc
+CMakeFiles/faulterrorsim.dir/Mirror.o: CMakeFiles/faulterrorsim.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/faulterrorsim.dir/Mirror.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/faulterrorsim.dir/Mirror.o -MF CMakeFiles/faulterrorsim.dir/Mirror.o.d -o CMakeFiles/faulterrorsim.dir/Mirror.o -c /root/DRAM_FAULT_SIM/Mirror.cc
+
+CMakeFiles/faulterrorsim.dir/Mirror.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/faulterrorsim.dir/Mirror.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/DRAM_FAULT_SIM/Mirror.cc > CMakeFiles/faulterrorsim.dir/Mirror.i
+
+CMakeFiles/faulterrorsim.dir/Mirror.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/faulterrorsim.dir/Mirror.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/DRAM_FAULT_SIM/Mirror.cc -o CMakeFiles/faulterrorsim.dir/Mirror.s
 
 # Object files for target faulterrorsim
 faulterrorsim_OBJECTS = \
@@ -460,7 +474,8 @@ faulterrorsim_OBJECTS = \
 "CMakeFiles/faulterrorsim.dir/XED.o" \
 "CMakeFiles/faulterrorsim.dir/FlipCorrection.o" \
 "CMakeFiles/faulterrorsim.dir/Config.o" \
-"CMakeFiles/faulterrorsim.dir/uint128_t.o"
+"CMakeFiles/faulterrorsim.dir/uint128_t.o" \
+"CMakeFiles/faulterrorsim.dir/Mirror.o"
 
 # External object files for target faulterrorsim
 faulterrorsim_EXTERNAL_OBJECTS =
@@ -491,9 +506,10 @@ faulterrorsim: CMakeFiles/faulterrorsim.dir/XED.o
 faulterrorsim: CMakeFiles/faulterrorsim.dir/FlipCorrection.o
 faulterrorsim: CMakeFiles/faulterrorsim.dir/Config.o
 faulterrorsim: CMakeFiles/faulterrorsim.dir/uint128_t.o
+faulterrorsim: CMakeFiles/faulterrorsim.dir/Mirror.o
 faulterrorsim: CMakeFiles/faulterrorsim.dir/build.make
 faulterrorsim: CMakeFiles/faulterrorsim.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX executable faulterrorsim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/DRAM_FAULT_SIM/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Linking CXX executable faulterrorsim"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/faulterrorsim.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -505,6 +521,6 @@ CMakeFiles/faulterrorsim.dir/clean:
 .PHONY : CMakeFiles/faulterrorsim.dir/clean
 
 CMakeFiles/faulterrorsim.dir/depend:
-	cd /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kjh/Documents/kjh/DRAM_FAULT_SIM /home/kjh/Documents/kjh/DRAM_FAULT_SIM /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build /home/kjh/Documents/kjh/DRAM_FAULT_SIM/build/CMakeFiles/faulterrorsim.dir/DependInfo.cmake --color=$(COLOR)
+	cd /root/DRAM_FAULT_SIM/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/DRAM_FAULT_SIM /root/DRAM_FAULT_SIM /root/DRAM_FAULT_SIM/build /root/DRAM_FAULT_SIM/build /root/DRAM_FAULT_SIM/build/CMakeFiles/faulterrorsim.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/faulterrorsim.dir/depend
 
