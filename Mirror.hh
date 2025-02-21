@@ -42,11 +42,18 @@ public:
     uint64_t freq;
 };
 
+class Log {
+public:
+    uint64_t pfn;
+    int page_type;
+};
+
 class MirrorModule {
 public:
     MirrorModule();
     void init_mirror();
-    void access(uint64_t pfn, int page_type);
+    //void access(uint64_t pfn, int page_type);
+    void access();
     void add_profile_buffer(uint64_t pfn, int page_type);
     void flush_profile_buffer();
     void process_pfn(uint64_t pfn, int page_type);
@@ -65,6 +72,7 @@ public:
     int has_mirror(uint64_t pfn);
     void set_mirror(uint64_t pfn);
     void remove_mirror(uint64_t pfn);
+    void insert_log(uint64_t pfn, int page_type);
     void print_result();
 
 private:
@@ -74,6 +82,7 @@ private:
     std::list<Node*> lru_list;
     std::list<Node*> lfu_list;
     std::list<std::pair<uint64_t, int>> profile_buffer; // (pfn, page_type)
+    std::vector<Log> trace;
     uint64_t total_size_limit;
     uint64_t total_size;
     int free_size;

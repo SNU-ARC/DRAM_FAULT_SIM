@@ -46,8 +46,15 @@ void MirrorModule::init_mirror() {
     num_anon_page = 0;
 }
 
-void MirrorModule::access(uint64_t pfn, int page_type) {
-    add_profile_buffer(pfn, page_type);
+//void MirrorModule::access(uint64_t pfn, int page_type) {
+//    add_profile_buffer(pfn, page_type);
+//}
+
+void MirrorModule::access() {
+    for(auto log: trace) {
+        if(log.page_type == ANON_PAGE)
+            add_profile_buffer(log.pfn, log.page_type);
+    }
 }
 
 void MirrorModule::add_profile_buffer(uint64_t pfn, int page_type) {
@@ -274,7 +281,7 @@ void MirrorModule::insert_mirror(Node* candidate, int list_type) {
         }
     }
     else if (list_type == LRU_LIST) {
-        if (lru_mirror.size() < MAX_LFU_MIRROR_SIZE) {
+        if (lru_mirror.size() < MAX_LRU_MIRROR_SIZE) {
             Node* new_node = alloc_node();
             new_node->pfn = candidate->pfn;
             new_node->age = candidate->age;
@@ -409,6 +416,13 @@ void MirrorModule::set_mirror(uint64_t pfn) {
 
 void MirrorModule::remove_mirror(uint64_t pfn) {
     mirror_bitmap[pfn / 8] &= ~(1 << (pfn % 8));
+}
+
+void MirrorModule::insert_log(uint64_t pfn, int page_type) {
+    Log log;
+    log.pfn = pfn;
+    log.page_type = page_type;
+    trace.push_back(log);
 }
 
 void MirrorModule::print_result() {
