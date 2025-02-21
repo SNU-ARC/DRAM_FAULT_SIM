@@ -1,3 +1,0 @@
-/root/DRAM_FAULT_SIM/build/CMakeFiles/faulterrorsim.dir
-/root/DRAM_FAULT_SIM/build/CMakeFiles/edit_cache.dir
-/root/DRAM_FAULT_SIM/build/CMakeFiles/rebuild_cache.dir

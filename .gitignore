@@ -1,3 +1,15 @@
 .vscode
 CMakeCache.txt
+CMakeFiles
+
 build/*
+!build/address.map
+!build/log_1M.final
+!build/DDR4.sh
+!build/ddr5_all.sh
+!build/fig11.sh
+!build/fig8.sh
+!build/hbm3.sh
+!build/input_FIT.conf
+!build/lpddr5.sh
+!build/testing.sh
