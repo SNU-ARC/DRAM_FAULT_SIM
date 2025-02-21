@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cstring>
 #include <cassert>
 #include <algorithm>
@@ -139,6 +140,7 @@ std::list<Node*>::iterator MirrorModule::search_list(uint64_t pfn, int list_type
 void MirrorModule::update_mirror_list() {
     sort_lfu_list();
     sort_lfu_mirror();
+    sort_lru_list();
     select_top_n_lfu(LFU_LIST_RATIO);
     select_top_n_lru(LRU_LIST_RATIO);
 }
@@ -311,6 +313,34 @@ void MirrorModule::insert_mirror(Node* candidate, int list_type) {
     }
 }
 
+void MirrorModule::sort_lru_list() {
+    if (lru_list.empty())
+        return;
+
+    std::list<Node*>::iterator cur = lru_list.begin();
+    std::list<Node*>::iterator end = lru_list.end();
+
+    while(cur != end) {
+        auto max_node = cur;
+        auto it = std::next(cur);
+
+        while(it != end) {
+            if((*it)->age > (*max_node)->age)
+                max_node = it;
+            it = std::next(it);
+        }
+
+        if(max_node != cur) {
+            Node* tmp = *max_node;
+            lru_list.erase(max_node);
+            lru_list.insert(cur, tmp);
+            continue;
+        }
+
+        cur = std::next(cur);
+    }
+}
+
 void MirrorModule::insert_lfu_list(uint64_t pfn) {
     auto cur = search_list(pfn, LFU_LIST);
     auto end = lfu_list.end();
@@ -379,4 +409,19 @@ void MirrorModule::set_mirror(uint64_t pfn) {
 
 void MirrorModule::remove_mirror(uint64_t pfn) {
     mirror_bitmap[pfn / 8] &= ~(1 << (pfn % 8));
+}
+
+void MirrorModule::print_result() {
+    std::cout << "LRU_MIRROR" << std::endl;
+    for(auto i: lru_mirror)
+        std::cout << "pfn: " << std::hex << i->pfn << ", age: " << std::dec << i->age << std::endl;
+    std::cout << "LFU_MIRROR" << std::endl;
+    for(auto i: lfu_mirror)
+        std::cout << "pfn: " << std::hex << i->pfn << ", freq: " << std::dec << i->freq << std::endl;
+    std::cout << "LRU_LIST" << std::endl;
+    for(auto i: lru_list)
+        std::cout << "pfn: " << std::hex << i->pfn << ", age: " << std::dec << i->age << std::endl;
+    std::cout << "LFU_LIST" << std::endl;
+    for(auto i: lfu_list)
+        std::cout << "pfn: " << std::hex << i->pfn << ", freq: " << std::dec << i->freq << std::endl;
 }

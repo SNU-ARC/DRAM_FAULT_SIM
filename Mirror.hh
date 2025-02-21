@@ -18,8 +18,8 @@
 
 //#define TOTAL_NODE_SIZE (UNIT_MEMORY_UTIL * FREE_SPACE_RATIO + MAX_LRU_SIZE + MAX_LFU_SIZE)
 #define MAX_MIRROR_SIZE ((FREE_SPACE_RATIO - KERNEL_PAGE_RATIO) * MAX_PFN / 100)
-#define LRU_LIST_RATIO 70
-#define LFU_LIST_RATIO 30
+#define LRU_LIST_RATIO 100
+#define LFU_LIST_RATIO 0
 #define MAX_LRU_MIRROR_SIZE (MAX_MIRROR_SIZE * LRU_LIST_RATIO / (LRU_LIST_RATIO + LFU_LIST_RATIO))
 #define MAX_LFU_MIRROR_SIZE (MAX_MIRROR_SIZE * LFU_LIST_RATIO / (LRU_LIST_RATIO + LFU_LIST_RATIO))
 #define TOTAL_NODE_SIZE (MAX_MIRROR_SIZE + MAX_LRU_SIZE + MAX_LFU_SIZE)
@@ -56,6 +56,7 @@ public:
     void select_top_n_lfu(int n);
     void sort_lfu_mirror();
     void sort_lfu_list();
+    void sort_lru_list();
     void insert_mirror(Node* candidate, int list_type);
     void insert_lfu_list(uint64_t pfn);
     void insert_lru_list(uint64_t pfn);
@@ -64,6 +65,7 @@ public:
     int has_mirror(uint64_t pfn);
     void set_mirror(uint64_t pfn);
     void remove_mirror(uint64_t pfn);
+    void print_result();
 
 private:
     std::list<Node*> free_list;

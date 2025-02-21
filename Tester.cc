@@ -178,6 +178,9 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
   }
 
   printf("Total Log Count : %ld\n", cnt);
+
+  mirror_module->print_result();
+
 #else 
   printf("KJH Option Disabled!\n");
   sleep(5);
