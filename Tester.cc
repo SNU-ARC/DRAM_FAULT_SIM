@@ -138,6 +138,7 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
   }
   
   uintptr_t *addresses = (uintptr_t *)malloc(address_cnt * sizeof(uintptr_t));
+  bool *selected = (bool *)calloc(address_cnt, sizeof(bool));
   if (!addresses) {
       perror("메모리 할당 실패");
       fclose(file);
@@ -170,28 +171,14 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
       return;
   }
       
-  while (fscanf(file, "%lx %c", &trace_address, &type) == 2) {
-    // Check Fail function Insert
-    //if(type == 'A')
-    //  mirror_module->access(trace_address, ANON_PAGE);
-    //printf("%lx %c\n", trace_address, type);
-    if(type == 'K')
-      mirror_module->insert_log(trace_address, KERNEL_PAGE);
-    else if(type == 'A')
-      mirror_module->insert_log(trace_address, ANON_PAGE);
-    else if(type == 'F')
-      mirror_module->insert_log(trace_address, FILE_PAGE);
-    else
-      assert(0);
-    cnt++;
-  }
-
-  mirror_module->access();
+  // while (fscanf(trace_file, "%lx %c", &trace_address, &type) == 2) {
+  //   // Check Fail function Insert
+  //   printf("%lx %c\n", trace_address, type);
+  //   cnt++;
+  // }
 
   printf("Total Log Count : %ld\n", cnt);
-
-  mirror_module->print_result();
-
+  fclose(trace_file);
 #else 
   printf("KJH Option Disabled!\n");
   sleep(5);
@@ -267,17 +254,35 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
     double hr = 0.;
     int CEcounter = 0;
     int errorCounter = 0;
+    int cnt = 0;
+    int scan_cnt = 0;
+    int start_cnt = rand() % (address_cnt - 101);
+    memset(selected, 0, sizeof(bool) * address_cnt);
 
     bool hr_datagen = false;
     while (true)
     {
+      cnt++;
       if (killflag)
       {
         break;
       }
+      for (; scan_cnt < start_cnt; scan_cnt++) {
+        // make mirror based on LRU
+        trace_address = (unsigned long)addresses[scan_cnt];
+      }
+      for (int i = 0; i < 100 && scan_cnt < address_cnt; i++, scan_cnt++) {
+        trace_address = (unsigned long)addresses[scan_cnt];
+        // Make mirror based on LRU
+      }
+      if (scan_cnt >= address_cnt) {
+        break;
+      }
+
       // 1. Advance
       double prevHr = hr;
       double delta = advance(dg->getFaultRate());
+      delta = 0.001;
       hr += delta;
       if (dg->getFaultRate() > 2.7801302490616151e-07)
       {
@@ -307,8 +312,16 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
 
       // 4. generate an error and decode it
 #if KJH
-      ADDR faultaddr = addresses[rand() % address_cnt] * 4096;
-      ErrorType result = fd->genSystemRandomFaultAndTest(ecc, faultaddr);
+      ADDR faultaddr = -1;
+      long long index;
+      if ((scan_cnt - start_cnt) % 300 == 0) {
+        do {
+          index = rand() % address_cnt;
+          faultaddr = addresses[index] * 4096;
+        } while (selected[index]);
+        selected[index] = true;
+      }
+      ErrorType result = fd->genSystemRandomFaultAndTest(ecc, faultaddr, trace_address);
 #else
       ErrorType result = fd->genSystemRandomFaultAndTest(ecc);
 #endif
@@ -318,6 +331,7 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
 
       // 5. process result
       // default : PF retirement
+      // printf("runNum: %ld result: %d trace: %d\n", runNum, result, scan_cnt);
 
       if (fd->getRetiredBlkCount() >= 25 * 1024 && (result != CE))
       {
@@ -336,10 +350,11 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
       }
       else if (result == DUE)
       {
+        // TODO: check if our mirror protects from failure, update stats
         // printf("===DUE: hours %lf (%lfyrs), isPFmode() %d  ", hr,
         // hr/(24*365), fd->faultRateInfo->iRate->IsPFmode());
         // printf("tick %d \n",runNum);
-        printf("%lf DUE-", hr);
+        printf("[%ld]%lf DUE-", runNum, hr);
         fd->printOperationalFaults();
         // fd->printVisualFaults();
         // printf("\n");
@@ -375,6 +390,7 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
         break;
       }
     }
+    // printf("Trace start at %d / %d, count: %d\n", start_cnt, address_cnt, cnt);
 
     if (killflag)
     {

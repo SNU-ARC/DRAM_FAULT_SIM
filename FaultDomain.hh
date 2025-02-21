@@ -46,6 +46,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #ifndef __FAULT_DOMAIN_HH__
 #define __FAULT_DOMAIN_HH__
 
+#include <map>
 #include <list>
 #include <vector>
 #include "FaultRateInfo.hh"
@@ -156,6 +157,7 @@ class FaultDomain {
   void setInitialRetiredBlkCount(ECC *ecc, double rate);
 
   unsigned long long getRetiredBlkCount() { return retiredBlkCount; }
+  size_t getFailedAddressList() { return failedAddressList.size(); }
   size_t getRetiredChipCount() { return retiredChipIDList.size(); }
   size_t getRetiredPinCount() { return retiredPinIDList.size(); }
   //! Fault generation and Test based on scenario
@@ -171,7 +173,7 @@ class FaultDomain {
   /*! \param ecc ECC pointer */
 #if KJH
   ErrorType genSystemRandomFaultAndTest(
-      ECC *ecc, ADDR faultaddr);  // For fault generation based on fault rates
+      ECC *ecc, ADDR faultaddr, ADDR traceaddr);  // For fault generation based on fault rates
 #else
   ErrorType genSystemRandomFaultAndTest(
       ECC *ecc);  // For fault generation based on fault rates
@@ -190,6 +192,11 @@ class FaultDomain {
   void InitInherentFaultRate() { faultRateInfo->iRate->setIFRate(); };
   bool overlapTest();  //!< Checking if overlap exists
   bool getBadCount(ECC *ecc);
+
+  // JONG
+  bool isFailed(ADDR traceaddr) {
+    return !(failedAddressList.find(traceaddr) == failedAddressList.end());
+  }
 
  public:
   int ranksPerDomain;  //!< number of ranks involved in this fault domain
@@ -212,6 +219,7 @@ class FaultDomain {
   unsigned long long retiredBlkCount;
   std::list<int> retiredPinIDList;   //!< List of retired pins
   std::list<int> retiredChipIDList;  //!< List of retired chips
+  std::map<ADDR, Fault *> failedAddressList;  //!< List of failed addresses
 
   // GONG
   void FaultyChipDetect(std::list<int> *chip_list);  //!< find faulty chip (for

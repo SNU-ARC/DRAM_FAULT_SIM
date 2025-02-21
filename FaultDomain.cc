@@ -194,7 +194,7 @@ void generateCombinations(const std::vector<Fault*>& faults,
 }
 
 #if KJH
-ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr) {
+ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADDR traceaddr) {
   // CacheLine blkOrg = {pinsPerDevice, (devicesPerRank -(int)
   // retiredChipIDList.size()) * pinsPerDevice - (int) retiredPinIDList.size(),
   // blkHeight};
@@ -204,7 +204,8 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr) {
           (int)retiredPinIDList.size(),
       blkHeight, message_config};
   Fault *newFault;
-  ErrorType result = NE;
+  ErrorType inject_result = NE;
+  ErrorType test_result = NE;
   // whether we try decode errors here by inherent fault or the other error
   // sources
 
@@ -212,11 +213,29 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr) {
   // 1. generate a new fault
   //----------------------------------------------------------
   // std::string newFaultType = faultRateInfo->pickRandomType();
-  const std::pair<std::string, double> *newFaultType =
-      faultRateInfo->pickRandomType();
+  const std::pair<std::string, double> *newFaultType;
+  bool ByInherentFault = true;
+  if (faultaddr != -1) {
+    while (ByInherentFault) {
+      newFaultType = faultRateInfo->pickRandomType();
+      // whether this test caused by (intermittent) inherent faults
+      ByInherentFault = (newFaultType->first == "inherent") ? true : false;
+    }
+  }
 
-  // whether this test caused by (intermittent) inherent faults
-  bool ByInherentFault = (newFaultType->first == "inherent") ? true : false;
+  // Test failure by operational faults (address matching)
+  if (isFailed(traceaddr)) {
+    test_result = DUE;
+    activeFaultList.push_back(failedAddressList.find(traceaddr)->second);
+    operationalFaultList.push_back(failedAddressList.find(traceaddr)->second);
+  } else {
+    blk.reset();
+    if (inherentFault != NULL)
+      inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
+                                      ecc->chipRand);
+    test_result = worseErrorType(test_result, ecc->decode(this, blk));
+    // printf("inherent first, %d ", test_result);
+  }
 
   if (!ByInherentFault) {
     newFault = Fault::genRandomFault(newFaultType->first, this);
@@ -261,6 +280,7 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr) {
   } else {
     // GONG: we do not generate a new fault.
     if (operationalFaultList.size() > 0) {
+      // TODO: match fault address map
       auto it = operationalFaultList.crbegin();
       newFault = (*it);  // operationalFaultList.begin();
     } else {
@@ -269,7 +289,12 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr) {
       if (inherentFault != NULL)
         inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
                                        ecc->chipRand);
-      return worseErrorType(result, ecc->decode(this, blk));
+      inject_result = worseErrorType(inject_result, ecc->decode(this, blk));
+      if (inject_result == DUE) {
+        failedAddressList.insert(std::pair<ADDR, Fault *>(faultaddr, newFault));
+      }
+      // printf("inherent second, %d ", test_result);
+      return test_result;
     }
   }
   int overlap_level = 0;
@@ -301,7 +326,7 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr) {
     }
 
     newFault->genRandomError(&blk);
-    result = worseErrorType(result, ecc->decode(this, blk));
+    inject_result = worseErrorType(inject_result, ecc->decode(this, blk));
   } else {
     std::vector<Fault*> overlappedFaults = currentPossibleFaultList;
     overlappedFaults.push_back(newFault);
@@ -329,14 +354,14 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr) {
         for (const auto& fault : combo) {
           fault->genRandomError(&blk);
         }
-        result = worseErrorType(result, ecc->decode(this, blk));
+        inject_result = worseErrorType(inject_result, ecc->decode(this, blk));
       }
     }
   }
 
 
   //GONG: fine-grained retirement is currently inactive/ignored.
-  if ((result==CE)&&ecc->getDoRetire()&&ecc->needRetire(this, newFault))
+  if ((inject_result==CE)&&ecc->getDoRetire()&&ecc->needRetire(this, newFault))
   {
     if (ecc->getMaxRetiredBlkCount() > 
                       retiredBlkCount+newFault->getAffectedBlkCount()){
@@ -354,7 +379,11 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr) {
     }
   }
 
-  return result;
+  if (inject_result == DUE) {
+    failedAddressList.insert(std::pair<ADDR, Fault *>(faultaddr, newFault));
+  }
+  // printf("inherent last, %d ", test_result);
+  return test_result;
 #else
     auto faultEnd = operationalFaultList.rend();
     for (auto it1 = operationalFaultList.rbegin(); it1 != faultEnd; ++it1) {
