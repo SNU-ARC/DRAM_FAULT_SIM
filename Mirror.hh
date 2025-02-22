@@ -11,7 +11,8 @@
 #define FREE_SPACE_RATIO 10
 #define KERNEL_PAGE_RATIO 3
 
-#define MAX_PFN (1 << 28)
+#define MAX_PFN (1 << 25)
+//#define MAX_PFN (1 << 28)
 #define BITMAP_SIZE (MAX_PFN / 8)
 #define MAX_LRU_SIZE 100000
 #define MAX_LFU_SIZE 50000

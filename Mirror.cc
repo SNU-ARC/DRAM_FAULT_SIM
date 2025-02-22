@@ -86,6 +86,7 @@ void MirrorModule::process_pfn(uint64_t pfn, int page_type) {
             Node* cur_node = *cur;
             lru_mirror.erase(cur);
             lru_mirror.push_front(cur_node);
+            insert_lru_list(pfn);
             return;
         }
 
@@ -127,13 +128,13 @@ std::list<Node*>::iterator MirrorModule::search_list(uint64_t pfn, int list_type
 
     while (cur != end) {
         if ((*cur)->pfn == pfn) {
-            if (list_type == LRU_MIRROR) {
-                Node* cur_node = *cur;
-                lru_mirror.erase(cur);
-                lru_mirror.push_front(cur_node);
-                cur = lru_mirror.begin();
-                end = lru_mirror.end();
-            }
+            //if (list_type == LRU_MIRROR) {
+            //    Node* cur_node = *cur;
+            //    lru_mirror.erase(cur);
+            //    lru_mirror.push_front(cur_node);
+            //    cur = lru_mirror.begin();
+            //    end = lru_mirror.end();
+            //}
             break;
         }
         cur = std::next(cur);
@@ -147,7 +148,7 @@ std::list<Node*>::iterator MirrorModule::search_list(uint64_t pfn, int list_type
 void MirrorModule::update_mirror_list() {
     sort_lfu_list();
     sort_lfu_mirror();
-    sort_lru_list();
+    //sort_lru_list();
     select_top_n_lfu(LFU_LIST_RATIO);
     select_top_n_lru(LRU_LIST_RATIO);
 }
@@ -381,6 +382,9 @@ void MirrorModule::insert_lru_list(uint64_t pfn) {
     else {
         (*cur)->freq++;
         (*cur)->age = num_anon_page;
+        Node* cur_node = *cur;
+        lru_list.erase(cur);
+        lru_list.push_front(cur_node);
     }
 }
 

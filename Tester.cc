@@ -164,18 +164,27 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
   char type;
   // [MSW]
   MirrorModule* mirror_module = new MirrorModule();
-  FILE *trace_file = fopen("log_1M.final", "r"); // Open log_1M.final
-  //FILE *trace_file = fopen("log_200M.final", "r"); // Open log_200M.final
+  //FILE *trace_file = fopen("log_1M.final", "r"); // Open log_1M.final
+  FILE *trace_file = fopen("log_200M.final", "r"); // Open log_200M.final
   if (!trace_file) {
       perror("Can not open file!!!\n");
       return;
   }
       
-  // while (fscanf(trace_file, "%lx %c", &trace_address, &type) == 2) {
-  //   // Check Fail function Insert
-  //   printf("%lx %c\n", trace_address, type);
-  //   cnt++;
-  // }
+  while (fscanf(trace_file, "%lx %c", &trace_address, &type) == 2) {
+    // Check Fail function Insert
+    //printf("%lx %c\n", trace_address, type);
+    if(type == 'K')
+      mirror_module->insert_log(trace_address, KERNEL_PAGE);
+    else if(type == 'A')
+      mirror_module->insert_log(trace_address, ANON_PAGE);
+    else if(type == 'F')
+      mirror_module->insert_log(trace_address, FILE_PAGE);
+    cnt++;
+  }
+
+  mirror_module->access();
+  mirror_module->print_result();
 
   printf("Total Log Count : %ld\n", cnt);
   fclose(trace_file);
