@@ -5,7 +5,6 @@ CMakeFiles
 build/*
 !build/address.map
 !build/log_1M.final
-!build/log_200M.final
 !build/DDR4.sh
 !build/ddr5_all.sh
 !build/fig11.sh
