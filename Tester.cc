@@ -167,7 +167,8 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
   // [MSW]
   MirrorModule* mirror_module = new MirrorModule();
   //FILE *trace_file = fopen("log_1M.final", "r"); // Open log_1M.final
-  FILE *trace_file = fopen("log_200M.final", "r"); // Open log_200M.final
+  //FILE *trace_file = fopen("log_200M.final", "r"); // Open log_200M.final
+  FILE *trace_file = fopen("log_200M_no_file_pages.final", "r"); // Open log_200M_no_file_pages.final
   if (!trace_file) {
       perror("Can not open file!!!\n");
       return;

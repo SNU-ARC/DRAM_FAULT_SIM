@@ -30,12 +30,12 @@ void MirrorModule::init_mirror() {
         lfu_list.pop_front();
         delete node;
     }
-    while (free_list.size()) {
-        Node* node = free_list.front();
-        free_list.pop_front();
-        delete node;
-    }
-    for (int i = 0; i < TOTAL_NODE_SIZE; i++) {
+    //while (free_list.size()) {
+    //    Node* node = free_list.front();
+    //    free_list.pop_front();
+    //    delete node;
+    //}
+    for (int i = free_list.size(); i < TOTAL_NODE_SIZE; i++) {
         Node* node = new Node;
         memset(node, 0, sizeof(Node));
         free_list.push_back(node);
