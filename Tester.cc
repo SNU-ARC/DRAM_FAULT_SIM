@@ -276,7 +276,7 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
     memset(selected, 0, sizeof(bool) * address_cnt);
 
     // [MSw]
-    mirror_module->init_mirror();
+    mirror_module->reset_mirror();
 
     bool hr_datagen = false;
     while (true)

@@ -54,6 +54,7 @@ public:
 class MirrorModule {
 public:
     MirrorModule();
+    void reset_mirror();
     void init_mirror();
     //void access(uint64_t pfn, int page_type);
     bool access();

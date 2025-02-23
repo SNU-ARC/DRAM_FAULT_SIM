@@ -9,37 +9,55 @@ MirrorModule::MirrorModule() {
 }
 
 void MirrorModule::init_mirror() {
+    for (int i = 0; i < TOTAL_NODE_SIZE; i++) {
+        Node* node = new Node;
+        memset(node, 0, sizeof(Node));
+        free_list.push_back(node);
+    }
+
+    total_size = 0;
+    total_size_limit = 0;
+    num_anon_page = 0;
+    trace_idx = 0;
+}
+
+void MirrorModule::reset_mirror() {
     memset(mirror_bitmap, 0, BITMAP_SIZE * sizeof(uint8_t));
+    assert(lru_mirror.size() + lfu_mirror.size() + lru_list.size() + lfu_list.size() + free_list.size() == TOTAL_NODE_SIZE);
     while (lru_mirror.size()) {
         Node* node = lru_mirror.front();
         lru_mirror.pop_front();
-        delete node;
+        memset(node, 0, sizeof(Node));
+        free_list.push_back(node);
     }
     while (lfu_mirror.size()) {
         Node* node = lfu_mirror.front();
         lfu_mirror.pop_front();
-        delete node;
+        memset(node, 0, sizeof(Node));
+        free_list.push_back(node);
     }
     while (lru_list .size()) {
         Node* node = lru_list.front();
         lru_list.pop_front();
-        delete node;
+        memset(node, 0, sizeof(Node));
+        free_list.push_back(node);
     }
     while (lfu_list.size()) {
         Node* node = lfu_list.front();
         lfu_list.pop_front();
-        delete node;
+        memset(node, 0, sizeof(Node));
+        free_list.push_back(node);
     }
     //while (free_list.size()) {
     //    Node* node = free_list.front();
     //    free_list.pop_front();
     //    delete node;
     //}
-    for (int i = free_list.size(); i < TOTAL_NODE_SIZE; i++) {
-        Node* node = new Node;
-        memset(node, 0, sizeof(Node));
-        free_list.push_back(node);
-    }
+    //for (int i = free_list.size(); i < TOTAL_NODE_SIZE; i++) {
+    //    Node* node = new Node;
+    //    memset(node, 0, sizeof(Node));
+    //    free_list.push_back(node);
+    //}
 
     total_size = 0;
     total_size_limit = 0;
