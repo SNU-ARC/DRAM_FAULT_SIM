@@ -430,7 +430,7 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
           chipkill_fail_cnt++;
         if(trace_page_type == ANON_PAGE && !mirror_module->has_mirror(trace_address >> 12))
           mirror_fail_cnt++;
-        std::cout << "chipkill: " << chipkill_fail_cnt << ", mirror: " << mirror_fail_cnt << std::endl;
+        std::cout << "chipkill: " << chipkill_fail_cnt << ", mirror: " << mirror_fail_cnt << ", cnt: " << scan_cnt - start_cnt + 1 << std::endl;
         break;
       }
       else if (result == SDC)

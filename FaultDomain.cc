@@ -734,12 +734,12 @@ void FaultDomain::retireChip(int chipID) {
 }
 
 void FaultDomain::clear() {
-  //for (auto it = operationalFaultList.begin(); it != operationalFaultList.end();
-  //     ++it) {
-  //  std::cout << *it << "," << std::endl;
-  //  if(std::next(it) != operationalFaultList.end())
-  //    delete *it;
-  //}
+  for (auto it = operationalFaultList.begin(); it != operationalFaultList.end();
+       ++it) {
+    std::cout << *it << "," << std::endl;
+    if(std::next(it) != operationalFaultList.end())
+      delete *it;
+  }
   operationalFaultList.clear();
   retiredChipIDList.clear();
   retiredPinIDList.clear();
