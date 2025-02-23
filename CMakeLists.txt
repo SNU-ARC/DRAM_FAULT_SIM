@@ -1,4 +1,4 @@
-ADD_COMPILE_OPTIONS(-g -O3 -std=c++11)# -fsanitize=address)
+ADD_COMPILE_OPTIONS(-g -O3 -std=c++14)# -fsanitize=address)
 add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")# -fsanitize=address")

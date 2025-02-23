@@ -219,18 +219,52 @@ void MirrorModule::update_mirror_list() {
 }
 
 void MirrorModule::select_top_n_lru(int n) {
-    std::list<Node*>::iterator cur = lru_list.begin();
-    std::list<Node*>::iterator end = lru_list.end();
+    std::list<Node*>::iterator lru_list_cur = lru_list.begin();
+    std::list<Node*>::iterator lru_list_end = lru_list.end();
+    std::list<Node*>::iterator lru_mirror_cur = lru_mirror.begin();
+    std::list<Node*>::iterator lru_mirror_end = lru_mirror.end();
     int count = 0;
 
-    while (cur != end && count < n) {
-        if (has_mirror((*cur)->pfn)) {
-            cur = std::next(cur);
+    while (lru_list_cur != lru_list_end && count < n) {
+        if (has_mirror((*lru_list_cur)->pfn)) {
+            lru_list_cur = std::next(lru_list_cur);
             continue;
         }
-        insert_mirror(*cur, LRU_LIST);
+        while(lru_mirror_cur != lru_mirror_end && (*lru_mirror_cur)->age > (*lru_list_cur)->age)
+            lru_mirror_cur = std::next(lru_mirror_cur);
+        //insert_mirror(*lru_list_cur, LRU_LIST);
+        if(lru_mirror.size() < MAX_LRU_MIRROR_SIZE) {
+            Node* new_node = alloc_node();
+            new_node->pfn = (*lru_list_cur)->pfn;
+            new_node->age = (*lru_list_cur)->age;
+            new_node->freq = (*lru_list_cur)->freq;
+            new_node->list_type = LRU_MIRROR;
+
+            lru_mirror.insert(lru_mirror_cur, new_node);
+            lru_mirror_hash_bucket[new_node->pfn % HASH_BUCKET_SIZE].push_back({new_node->pfn, std::prev(lru_mirror_cur)});
+            set_mirror(new_node->pfn);
+        }
+        else {
+            std::list<Node*>::iterator min_age_node = std::prev(lru_mirror.end());
+            
+            if((*lru_list_cur)->age > (*min_age_node)->age) {
+                remove_mirror((*min_age_node)->pfn);
+                for(auto it = lru_mirror_hash_bucket[(*min_age_node)->pfn % HASH_BUCKET_SIZE].begin();
+                    it != lru_mirror_hash_bucket[(*min_age_node)->pfn % HASH_BUCKET_SIZE].end(); it++) {
+                    if(it->first == (*min_age_node)->pfn) {
+                        lru_mirror_hash_bucket[(*min_age_node)->pfn % HASH_BUCKET_SIZE].erase(it);
+                        break;
+                    }
+                }
+                set_mirror((*lru_list_cur)->pfn);
+                (*min_age_node)->pfn = (*lru_list_cur)->pfn;
+                (*min_age_node)->age = (*lru_list_cur)->age;
+                (*min_age_node)->freq = (*lru_list_cur)->freq;
+                lru_mirror_hash_bucket[(*lru_list_cur)->pfn % HASH_BUCKET_SIZE].push_back({(*lru_list_cur)->pfn, lru_mirror_cur});
+            }
+        }
         count++;
-        cur = std::next(cur);
+        lru_list_cur = std::next(lru_list_cur);
     }
 }
 
@@ -309,42 +343,42 @@ void MirrorModule::insert_mirror(Node* candidate, int list_type) {
     std::list<Node*>::iterator cur, end;
 
     if (list_type == LFU_LIST) {
-        if (lfu_mirror.size() < MAX_LFU_MIRROR_SIZE) {
-            Node* new_node = alloc_node();
-            new_node->pfn = candidate->pfn;
-            new_node->age = candidate->age;
-            new_node->freq = candidate->freq;
-            new_node->list_type = LFU_MIRROR;
+    //    if (lfu_mirror.size() < MAX_LFU_MIRROR_SIZE) {
+    //        Node* new_node = alloc_node();
+    //        new_node->pfn = candidate->pfn;
+    //        new_node->age = candidate->age;
+    //        new_node->freq = candidate->freq;
+    //        new_node->list_type = LFU_MIRROR;
 
-            cur = lfu_mirror.begin();
-            end = lfu_mirror.end();
+    //        cur = lfu_mirror.begin();
+    //        end = lfu_mirror.end();
 
-            while (cur != end && (*cur)->freq > new_node->freq)
-                cur = std::next(cur);
+    //        while (cur != end && (*cur)->freq > new_node->freq)
+    //            cur = std::next(cur);
 
-            lfu_mirror.insert(cur, new_node);
-            set_mirror(new_node->pfn);
-        }
-        else {
-            cur = lfu_mirror.begin();
-            end = lfu_mirror.end();
+    //        lfu_mirror.insert(cur, new_node);
+    //        set_mirror(new_node->pfn);
+    //    }
+    //    else {
+    //        cur = lfu_mirror.begin();
+    //        end = lfu_mirror.end();
 
-            auto min_freq_node = cur;
+    //        auto min_freq_node = cur;
 
-            while (cur != end) {
-                if ((*cur)->freq < (*min_freq_node)->freq)
-                    min_freq_node = cur;
-                cur = std::next(cur);
-            }
+    //        while (cur != end) {
+    //            if ((*cur)->freq < (*min_freq_node)->freq)
+    //                min_freq_node = cur;
+    //            cur = std::next(cur);
+    //        }
 
-            if (candidate->freq > (*min_freq_node)->freq) {
-                remove_mirror((*min_freq_node)->pfn);
-                set_mirror(candidate->pfn);
-                (*min_freq_node)->pfn = candidate->pfn;
-                (*min_freq_node)->age = candidate->age;
-                (*min_freq_node)->freq = candidate->freq;
-            }
-        }
+    //        if (candidate->freq > (*min_freq_node)->freq) {
+    //            remove_mirror((*min_freq_node)->pfn);
+    //            set_mirror(candidate->pfn);
+    //            (*min_freq_node)->pfn = candidate->pfn;
+    //            (*min_freq_node)->age = candidate->age;
+    //            (*min_freq_node)->freq = candidate->freq;
+    //        }
+    //    }
     }
     else if (list_type == LRU_LIST) {
         if (lru_mirror.size() < MAX_LRU_MIRROR_SIZE) {
@@ -365,8 +399,8 @@ void MirrorModule::insert_mirror(Node* candidate, int list_type) {
             set_mirror(new_node->pfn);
         }
         else {
-            cur = lfu_mirror.begin();
-            end = lfu_mirror.end();
+            cur = lru_mirror.begin();
+            end = lru_mirror.end();
 
             auto min_age_node = cur;
 
