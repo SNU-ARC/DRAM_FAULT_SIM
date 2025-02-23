@@ -35,6 +35,8 @@
 #define ANON_PAGE 1
 #define FILE_PAGE 2
 
+#define WARMUP_PERIOD 100000
+
 class Node {
 public:
     int list_type;
@@ -54,7 +56,11 @@ public:
     MirrorModule();
     void init_mirror();
     //void access(uint64_t pfn, int page_type);
-    void access();
+    bool access();
+    uint64_t get_cur_trace_pfn();
+    int get_cur_trace_page_type();
+    uint64_t get_log_size();
+    void set_trace_idx(uint64_t idx);
     void add_profile_buffer(uint64_t pfn, int page_type);
     void flush_profile_buffer();
     void process_pfn(uint64_t pfn, int page_type);
@@ -89,6 +95,7 @@ private:
     int free_size;
     uint8_t mirror_bitmap[BITMAP_SIZE];
     uint64_t num_anon_page;
+    uint64_t trace_idx;
 };
 
 #endif

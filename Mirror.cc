@@ -44,17 +44,37 @@ void MirrorModule::init_mirror() {
     total_size = 0;
     total_size_limit = 0;
     num_anon_page = 0;
+    trace_idx = 0;
 }
 
 //void MirrorModule::access(uint64_t pfn, int page_type) {
 //    add_profile_buffer(pfn, page_type);
 //}
 
-void MirrorModule::access() {
-    for(auto log: trace) {
-        if(log.page_type == ANON_PAGE)
-            add_profile_buffer(log.pfn, log.page_type);
-    }
+bool MirrorModule::access() {
+    uint64_t pfn = trace[trace_idx].pfn;
+    int page_type = trace[trace_idx].page_type;
+    if(page_type == ANON_PAGE)
+        add_profile_buffer(pfn, page_type);
+    //trace_idx = (trace_idx + 1) % trace.size();
+    trace_idx++;
+    return trace_idx >= trace.size();
+}
+
+uint64_t MirrorModule::get_cur_trace_pfn() {
+    return trace[trace_idx].pfn;
+}
+
+int MirrorModule::get_cur_trace_page_type() {
+    return trace[trace_idx].page_type;
+}
+
+void MirrorModule::set_trace_idx(uint64_t idx) {
+    trace_idx = idx;
+}
+
+uint64_t MirrorModule::get_log_size() {
+    return trace.size();
 }
 
 void MirrorModule::add_profile_buffer(uint64_t pfn, int page_type) {

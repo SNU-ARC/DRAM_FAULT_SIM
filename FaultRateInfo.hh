@@ -367,6 +367,28 @@ class FaultRateInfo {
 
     assert(0);
   }
+
+  const std::pair<std::string, double> *pickRandomOperationalType() {
+    double draw = (double)rand() / RAND_MAX;
+    double sum = .0;
+    double total_sum = .0;
+    for (auto it = rateInfo.cbegin(); it != rateInfo.cend(); it++) {
+      if((*it).first != "inherent")
+        total_sum += (*it).second;
+    }
+    for (auto it = rateInfo.cbegin(); it != rateInfo.cend(); it++) {
+      if((*it).first == "inherent")
+        continue;
+      sum += (*it).second;
+      if ((sum / totalRate) >= draw * (total_sum / totalRate)) {
+        // return (*it).first;
+        return &(*it);
+      }
+    }
+
+    assert(0);
+  }
+
   InherentRate *iRate = new InherentRate();
   void setTester(class TesterSystem *tester, ECC *ecc) {
     iRate->setTester(tester, ecc);

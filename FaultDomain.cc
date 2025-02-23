@@ -217,7 +217,8 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
   bool ByInherentFault = true;
   if (faultaddr != -1) {
     while (ByInherentFault) {
-      newFaultType = faultRateInfo->pickRandomType();
+      //newFaultType = faultRateInfo->pickRandomType();
+      newFaultType = faultRateInfo->pickRandomOperationalType();
       // whether this test caused by (intermittent) inherent faults
       ByInherentFault = (newFaultType->first == "inherent") ? true : false;
     }
@@ -276,6 +277,7 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
 
 #if 1
     operationalFaultList.push_back(newFault);
+    //std::cout << "#1" << std::hex << newFault << std::dec << std::endl;
 
   } else {
     // GONG: we do not generate a new fault.
@@ -734,7 +736,9 @@ void FaultDomain::retireChip(int chipID) {
 void FaultDomain::clear() {
   for (auto it = operationalFaultList.begin(); it != operationalFaultList.end();
        ++it) {
-    delete *it;
+    std::cout << *it << "," << std::endl;
+  //  if(std::next(it) != operationalFaultList.end())
+  //    delete *it;
   }
   operationalFaultList.clear();
   retiredChipIDList.clear();

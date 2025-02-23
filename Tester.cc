@@ -161,6 +161,8 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
 
   unsigned long cnt = 0;
   unsigned long trace_address;
+  int trace_page_type;
+  uint64_t chipkill_fail_cnt = 0, mirror_fail_cnt = 0;
   char type;
   // [MSW]
   MirrorModule* mirror_module = new MirrorModule();
@@ -183,8 +185,8 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
     cnt++;
   }
 
-  mirror_module->access();
-  mirror_module->print_result();
+  //mirror_module->access();
+  //mirror_module->print_result();
 
   printf("Total Log Count : %ld\n", cnt);
   fclose(trace_file);
@@ -263,10 +265,17 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
     double hr = 0.;
     int CEcounter = 0;
     int errorCounter = 0;
-    int cnt = 0;
-    int scan_cnt = 0;
-    int start_cnt = rand() % (address_cnt - 101);
+    //int cnt = 0;
+    //int scan_cnt = 0;
+    //int start_cnt = rand() % (address_cnt - 101);
+    uint64_t cnt = 0;
+    uint64_t scan_cnt = rand() % (mirror_module->get_log_size() / 2);
+    mirror_module->set_trace_idx(scan_cnt);
+    uint64_t start_cnt = scan_cnt + WARMUP_PERIOD;
     memset(selected, 0, sizeof(bool) * address_cnt);
+
+    // [MSw]
+    mirror_module->init_mirror();
 
     bool hr_datagen = false;
     while (true)
@@ -276,16 +285,26 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
       {
         break;
       }
+      //for (; scan_cnt < start_cnt && !mirror_module->access(); scan_cnt++) {
+        // make mirror based on LRU
+      //  mirror_module->access();
+      //  trace_address = (unsigned long)addresses[scan_cnt];
+      //}
+      //for (int i = 0; i < 100 && scan_cnt < address_cnt && !mirror_module->access(); i++, scan_cnt++) {
+      //  trace_address = (unsigned long)addresses[scan_cnt];
+        // Make mirror based on LRU
+      //  mirror_module->access();
+      //}
+      //if (scan_cnt >= address_cnt) {
+      //  break;
+      //}
+
       for (; scan_cnt < start_cnt; scan_cnt++) {
         // make mirror based on LRU
-        trace_address = (unsigned long)addresses[scan_cnt];
-      }
-      for (int i = 0; i < 100 && scan_cnt < address_cnt; i++, scan_cnt++) {
-        trace_address = (unsigned long)addresses[scan_cnt];
-        // Make mirror based on LRU
-      }
-      if (scan_cnt >= address_cnt) {
-        break;
+        mirror_module->access();
+        //trace_address = (unsigned long)addresses[scan_cnt];
+        trace_address = mirror_module->get_cur_trace_pfn() << 12;
+        trace_page_type = mirror_module->get_cur_trace_page_type();
       }
 
       // 1. Advance
@@ -323,14 +342,43 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
 #if KJH
       ADDR faultaddr = -1;
       long long index;
+      ErrorType result = NE;
+      for (int i = 0; i < 100 && scan_cnt < mirror_module->get_log_size(); i++, scan_cnt++) {
+        // Make mirror based on LRU
+        result = fd->genSystemRandomFaultAndTest(ecc, faultaddr, trace_address);
+        if(result == DUE || result == SDC)
+          break;
+        mirror_module->access();
+        //trace_address = (unsigned long)addresses[scan_cnt];
+        trace_address = mirror_module->get_cur_trace_pfn() << 12;
+        trace_page_type = mirror_module->get_cur_trace_page_type();
+      }
+      if (scan_cnt >= mirror_module->get_log_size()) {
+        break;
+      }
       if ((scan_cnt - start_cnt) % 300 == 0) {
         do {
           index = rand() % address_cnt;
           faultaddr = addresses[index] * 4096;
+          //if((scan_cnt - start_cnt) % 30000 == 0)
+          //  std::cout << "start_cnt: " << start_cnt << ", scan_cnt: " << scan_cnt << std::endl;
         } while (selected[index]);
         selected[index] = true;
+        result = worseErrorType(result, fd->genSystemRandomFaultAndTest(ecc, faultaddr, trace_address));
       }
-      ErrorType result = fd->genSystemRandomFaultAndTest(ecc, faultaddr, trace_address);
+      
+      //ADDR faultaddr = -1;
+      //long long index;
+      //if ((scan_cnt - start_cnt) % 300 == 0) {
+      //  do {
+      //    index = rand() % address_cnt;
+      //    faultaddr = addresses[index] * 4096;
+          //if((scan_cnt - start_cnt) % 30000 == 0)
+          //  std::cout << "start_cnt: " << start_cnt << ", scan_cnt: " << scan_cnt << std::endl;
+      //  } while (selected[index]);
+      //  selected[index] = true;
+      //}
+      //ErrorType result = fd->genSystemRandomFaultAndTest(ecc, faultaddr, trace_address);
 #else
       ErrorType result = fd->genSystemRandomFaultAndTest(ecc);
 #endif
@@ -376,6 +424,12 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
             fd->setFaultStats(DUE, i);
           }
         }
+
+        if(trace_page_type != FILE_PAGE)
+          chipkill_fail_cnt++;
+        if(trace_page_type == ANON_PAGE && !mirror_module->has_mirror(trace_address >> 12))
+          mirror_fail_cnt++;
+        std::cout << "chipkill: " << chipkill_fail_cnt << ", mirror: " << mirror_fail_cnt << std::endl;
         break;
       }
       else if (result == SDC)
