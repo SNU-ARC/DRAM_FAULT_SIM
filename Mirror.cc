@@ -23,26 +23,26 @@ void MirrorModule::init_mirror() {
 
 void MirrorModule::reset_mirror() {
     memset(mirror_bitmap, 0, BITMAP_SIZE * sizeof(uint8_t));
-    assert(lru_mirror.size() + lfu_mirror.size() + lru_list.size() + lfu_list.size() + free_list.size() == TOTAL_NODE_SIZE);
-    while (lru_mirror.size()) {
+    //assert(lru_mirror.size() + lfu_mirror.size() + lru_list.size() + lfu_list.size() + free_list.size() == TOTAL_NODE_SIZE);
+    while (!lru_mirror.empty()) {
         Node* node = lru_mirror.front();
         lru_mirror.pop_front();
         memset(node, 0, sizeof(Node));
         free_list.push_back(node);
     }
-    while (lfu_mirror.size()) {
+    while (!lfu_mirror.empty()) {
         Node* node = lfu_mirror.front();
         lfu_mirror.pop_front();
         memset(node, 0, sizeof(Node));
         free_list.push_back(node);
     }
-    while (lru_list .size()) {
+    while (!lru_list.empty()) {
         Node* node = lru_list.front();
         lru_list.pop_front();
         memset(node, 0, sizeof(Node));
         free_list.push_back(node);
     }
-    while (lfu_list.size()) {
+    while (!lfu_list.empty()) {
         Node* node = lfu_list.front();
         lfu_list.pop_front();
         memset(node, 0, sizeof(Node));
@@ -58,6 +58,12 @@ void MirrorModule::reset_mirror() {
     //    memset(node, 0, sizeof(Node));
     //    free_list.push_back(node);
     //}
+
+    //lru_list_map.clear();
+    //lfu_list_map.clear();
+
+    for(int i = 0; i < HASH_BUCKET_SIZE; i++)
+        hash_bucket[i].clear();
 
     total_size = 0;
     total_size_limit = 0;
@@ -144,12 +150,19 @@ void MirrorModule::process_pfn(uint64_t pfn, int page_type) {
 
 std::list<Node*>::iterator MirrorModule::search_list(uint64_t pfn, int list_type) {
     std::list<Node*>::iterator cur, end;
+    int idx;
 
     switch (list_type) {
     case LRU_LIST:
-        cur = lru_list.begin();
+        //cur = lru_list.begin();
         end = lru_list.end();
-        break;
+
+        idx = pfn % HASH_BUCKET_SIZE;
+        for(auto i: hash_bucket[idx]) {
+            if(i.first == pfn)
+                return i.second;
+        }
+        return end;
     case LFU_LIST:
         cur = lfu_list.begin();
         end = lfu_list.end();
@@ -416,6 +429,7 @@ void MirrorModule::insert_lru_list(uint64_t pfn) {
         new_node->age = num_anon_page;
         new_node->list_type = LRU_LIST;
         lru_list.push_front(new_node);
+        hash_bucket[pfn % HASH_BUCKET_SIZE].push_back({pfn, lru_list.begin()});
     }
     else {
         (*cur)->freq++;
@@ -423,7 +437,12 @@ void MirrorModule::insert_lru_list(uint64_t pfn) {
         Node* cur_node = *cur;
         lru_list.erase(cur);
         lru_list.push_front(cur_node);
+        for(auto& i: hash_bucket[pfn % HASH_BUCKET_SIZE]) {
+            if(i.first == pfn)
+                i.second = lru_list.begin();
+        }
     }
+    //lru_list_map[pfn] = lru_list.begin();
 }
 
 void MirrorModule::reset_lfu_list() {
@@ -468,16 +487,16 @@ void MirrorModule::insert_log(uint64_t pfn, int page_type) {
 }
 
 void MirrorModule::print_result() {
-    std::cout << "LRU_MIRROR" << std::endl;
-    for(auto i: lru_mirror)
-        std::cout << "pfn: " << std::hex << i->pfn << ", age: " << std::dec << i->age << std::endl;
-    std::cout << "LFU_MIRROR" << std::endl;
-    for(auto i: lfu_mirror)
-        std::cout << "pfn: " << std::hex << i->pfn << ", freq: " << std::dec << i->freq << std::endl;
-    std::cout << "LRU_LIST" << std::endl;
-    for(auto i: lru_list)
-        std::cout << "pfn: " << std::hex << i->pfn << ", age: " << std::dec << i->age << std::endl;
-    std::cout << "LFU_LIST" << std::endl;
-    for(auto i: lfu_list)
-        std::cout << "pfn: " << std::hex << i->pfn << ", freq: " << std::dec << i->freq << std::endl;
+    std::cout << "LRU_MIRROR: " << lru_mirror.size() << std::endl;
+    //for(auto i: lru_mirror)
+    //    std::cout << "pfn: " << std::hex << i->pfn << ", age: " << std::dec << i->age << std::endl;
+    //std::cout << "LFU_MIRROR: " << lfu_mirror.size() << std::endl;
+    //for(auto i: lfu_mirror)
+    //    std::cout << "pfn: " << std::hex << i->pfn << ", freq: " << std::dec << i->freq << std::endl;
+    std::cout << "LRU_LIST: " << lru_list.size() << std::endl;
+    //for(auto i: lru_list)
+    //    std::cout << "pfn: " << std::hex << i->pfn << ", age: " << std::dec << i->age << std::endl;
+    //std::cout << "LFU_LIST: " << lfu_list.size() << std::endl;
+    //for(auto i: lfu_list)
+    //    std::cout << "pfn: " << std::hex << i->pfn << ", freq: " << std::dec << i->freq << std::endl;
 }

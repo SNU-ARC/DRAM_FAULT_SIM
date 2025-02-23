@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <vector>
 #include <list>
+#include <map>
 
 #define BUFFER_SIZE 1000
 #define UNIT_MEMORY_UTIL 500 // page number at memory util 1%
@@ -36,6 +37,8 @@
 #define FILE_PAGE 2
 
 #define WARMUP_PERIOD 1000000
+
+#define HASH_BUCKET_SIZE 4999
 
 class Node {
 public:
@@ -89,6 +92,9 @@ private:
     std::list<Node*> lfu_mirror;
     std::list<Node*> lru_list;
     std::list<Node*> lfu_list;
+    std::vector<std::pair<uint64_t, std::list<Node*>::iterator>> hash_bucket[HASH_BUCKET_SIZE];
+    //std::map<uint64_t, std::list<Node*>::iterator> lru_list_map;
+    //std::map<uint64_t, std::list<Node*>::iterator> lfu_list_map;
     std::list<std::pair<uint64_t, int>> profile_buffer; // (pfn, page_type)
     std::vector<Log> trace;
     uint64_t total_size_limit;
