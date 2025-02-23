@@ -92,7 +92,8 @@ private:
     std::list<Node*> lfu_mirror;
     std::list<Node*> lru_list;
     std::list<Node*> lfu_list;
-    std::vector<std::pair<uint64_t, std::list<Node*>::iterator>> hash_bucket[HASH_BUCKET_SIZE];
+    std::vector<std::pair<uint64_t, std::list<Node*>::iterator>> lru_mirror_hash_bucket[HASH_BUCKET_SIZE];
+    std::vector<std::pair<uint64_t, std::list<Node*>::iterator>> lru_list_hash_bucket[HASH_BUCKET_SIZE];
     //std::map<uint64_t, std::list<Node*>::iterator> lru_list_map;
     //std::map<uint64_t, std::list<Node*>::iterator> lfu_list_map;
     std::list<std::pair<uint64_t, int>> profile_buffer; // (pfn, page_type)

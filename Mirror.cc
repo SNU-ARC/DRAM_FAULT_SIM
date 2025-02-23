@@ -62,8 +62,10 @@ void MirrorModule::reset_mirror() {
     //lru_list_map.clear();
     //lfu_list_map.clear();
 
-    for(int i = 0; i < HASH_BUCKET_SIZE; i++)
-        hash_bucket[i].clear();
+    for(int i = 0; i < HASH_BUCKET_SIZE; i++){
+        lru_list_hash_bucket[i].clear();
+        lru_mirror_hash_bucket[i].clear();
+    }
 
     total_size = 0;
     total_size_limit = 0;
@@ -130,6 +132,12 @@ void MirrorModule::process_pfn(uint64_t pfn, int page_type) {
             Node* cur_node = *cur;
             lru_mirror.erase(cur);
             lru_mirror.push_front(cur_node);
+            for(auto& i: lru_mirror_hash_bucket[cur_node->pfn % HASH_BUCKET_SIZE]) {
+                if(i.first == cur_node->pfn) {
+                    i.second = lru_mirror.begin();
+                    break;
+                }
+            }
             insert_lru_list(pfn);
             return;
         }
@@ -158,7 +166,7 @@ std::list<Node*>::iterator MirrorModule::search_list(uint64_t pfn, int list_type
         end = lru_list.end();
 
         idx = pfn % HASH_BUCKET_SIZE;
-        for(auto i: hash_bucket[idx]) {
+        for(auto i: lru_list_hash_bucket[idx]) {
             if(i.first == pfn)
                 return i.second;
         }
@@ -168,9 +176,15 @@ std::list<Node*>::iterator MirrorModule::search_list(uint64_t pfn, int list_type
         end = lfu_list.end();
         break;
     case LRU_MIRROR:
-        cur = lru_mirror.begin();
+        //cur = lru_mirror.begin();
         end = lru_mirror.end();
-        break;
+
+        idx = pfn % HASH_BUCKET_SIZE;
+        for(auto i: lru_mirror_hash_bucket[idx]) {
+            if(i.first == pfn)
+                return i.second;
+        }
+        return end;
     case LFU_MIRROR:
         cur = lfu_mirror.begin();
         end = lfu_mirror.end();
@@ -347,6 +361,7 @@ void MirrorModule::insert_mirror(Node* candidate, int list_type) {
                 cur = std::next(cur);
 
             lru_mirror.insert(cur, new_node);
+            lru_mirror_hash_bucket[new_node->pfn % HASH_BUCKET_SIZE].push_back({new_node->pfn, std::prev(cur)});
             set_mirror(new_node->pfn);
         }
         else {
@@ -363,10 +378,18 @@ void MirrorModule::insert_mirror(Node* candidate, int list_type) {
 
             if (candidate->age > (*min_age_node)->age) {
                 remove_mirror((*min_age_node)->pfn);
+                for(auto it = lru_mirror_hash_bucket[(*min_age_node)->pfn % HASH_BUCKET_SIZE].begin(); 
+                    it != lru_mirror_hash_bucket[(*min_age_node)->pfn % HASH_BUCKET_SIZE].end(); it++) {
+                    if(it->first == (*min_age_node)->pfn) {
+                        lru_mirror_hash_bucket[(*min_age_node)->pfn % HASH_BUCKET_SIZE].erase(it);
+                        break;
+                    }
+                }
                 set_mirror(candidate->pfn);
                 (*min_age_node)->pfn = candidate->pfn;
                 (*min_age_node)->age = candidate->age;
                 (*min_age_node)->freq = candidate->freq;
+                lru_mirror_hash_bucket[candidate->pfn % HASH_BUCKET_SIZE].push_back({candidate->pfn, cur});
             }
         }
     }
@@ -429,7 +452,7 @@ void MirrorModule::insert_lru_list(uint64_t pfn) {
         new_node->age = num_anon_page;
         new_node->list_type = LRU_LIST;
         lru_list.push_front(new_node);
-        hash_bucket[pfn % HASH_BUCKET_SIZE].push_back({pfn, lru_list.begin()});
+        lru_list_hash_bucket[pfn % HASH_BUCKET_SIZE].push_back({pfn, lru_list.begin()});
     }
     else {
         (*cur)->freq++;
@@ -437,9 +460,11 @@ void MirrorModule::insert_lru_list(uint64_t pfn) {
         Node* cur_node = *cur;
         lru_list.erase(cur);
         lru_list.push_front(cur_node);
-        for(auto& i: hash_bucket[pfn % HASH_BUCKET_SIZE]) {
-            if(i.first == pfn)
+        for(auto& i: lru_list_hash_bucket[pfn % HASH_BUCKET_SIZE]) {
+            if(i.first == pfn) {
                 i.second = lru_list.begin();
+                break;
+            }
         }
     }
     //lru_list_map[pfn] = lru_list.begin();
