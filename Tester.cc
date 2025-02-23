@@ -263,6 +263,9 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
     //		dg->setSingleChipFault();
     //		dg->updateInherentFault(ecc);
 
+    // [MSw]
+    mirror_module->reset_mirror();
+
     double hr = 0.;
     int CEcounter = 0;
     int errorCounter = 0;
@@ -275,8 +278,6 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
     uint64_t start_cnt = scan_cnt + WARMUP_PERIOD;
     memset(selected, 0, sizeof(bool) * address_cnt);
 
-    // [MSw]
-    mirror_module->reset_mirror();
 
     bool hr_datagen = false;
     while (true)

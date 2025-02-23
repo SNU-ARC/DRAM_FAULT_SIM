@@ -35,7 +35,7 @@
 #define ANON_PAGE 1
 #define FILE_PAGE 2
 
-#define WARMUP_PERIOD 100000
+#define WARMUP_PERIOD 1000000
 
 class Node {
 public:
