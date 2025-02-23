@@ -117,7 +117,7 @@ void MirrorModule::flush_profile_buffer() {
         process_pfn(it->first, it->second);
 
     update_mirror_list();
-    reset_lfu_list();
+    //reset_lfu_list();
     profile_buffer.clear();
 }
 
@@ -142,16 +142,16 @@ void MirrorModule::process_pfn(uint64_t pfn, int page_type) {
             return;
         }
 
-        cur = search_list(pfn, LFU_MIRROR);
-        end = lfu_mirror.end();
-        if (cur != end) {
-            (*cur)->freq++;
-            (*cur)->age = num_anon_page;
-            insert_lru_list(pfn);
-        }
+        //cur = search_list(pfn, LFU_MIRROR);
+        //end = lfu_mirror.end();
+        //if (cur != end) {
+        //    (*cur)->freq++;
+        //    (*cur)->age = num_anon_page;
+        //    insert_lru_list(pfn);
+        //}
         else {
             insert_lru_list(pfn);
-            insert_lfu_list(pfn);
+            //insert_lfu_list(pfn);
         }
     }
 }
@@ -211,10 +211,10 @@ std::list<Node*>::iterator MirrorModule::search_list(uint64_t pfn, int list_type
 }
 
 void MirrorModule::update_mirror_list() {
-    sort_lfu_list();
-    sort_lfu_mirror();
+    //sort_lfu_list();
+    //sort_lfu_mirror();
     //sort_lru_list();
-    select_top_n_lfu(LFU_LIST_RATIO);
+    //select_top_n_lfu(LFU_LIST_RATIO);
     select_top_n_lru(LRU_LIST_RATIO);
 }
 
