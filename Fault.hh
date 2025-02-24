@@ -224,7 +224,8 @@ class Fault {
             }
                             */
   }
-  virtual void genRandomErrors(CacheLine *line, int numErrors, bool chipRand){};
+  virtual void genRandomErrors(CacheLine *line, int numErrors, bool chipRand){
+  };
 
   // static
   static Fault *genRandomFault(std::string type,

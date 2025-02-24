@@ -329,12 +329,12 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
         // fd->printVisualFaults();
         break;
       }
-      errorCounter++;
+      //errorCounter++;
       updateElapsedTime(hr);
-      if (errorCounter > 100000)
-      {
-        break;
-      }
+      //if (errorCounter > 100000)
+      //{
+      //  break;
+      //}
 
       // fd->printTransientFaults();
       //  2. scrub soft errors
@@ -345,11 +345,13 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
       ADDR faultaddr = -1;
       long long index;
       ErrorType result = NE;
-      for (int i = 0; i < 100 && scan_cnt < mirror_module->get_log_size(); i++, scan_cnt++) {
+      for (int i = 0; i < 99 && scan_cnt < mirror_module->get_log_size(); i++, scan_cnt++) {
         // Make mirror based on LRU
-        result = fd->genSystemRandomFaultAndTest(ecc, faultaddr, trace_address);
-        if(result == DUE || result == SDC)
-          break;
+        //bool failed = fd->isFailed(trace_address);
+        //if(failed) {
+        //  result = DUE;
+        //  break;
+        //}
         mirror_module->access();
         //trace_address = (unsigned long)addresses[scan_cnt];
         trace_address = mirror_module->get_cur_trace_pfn() << 12;
@@ -358,15 +360,20 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
       if (scan_cnt >= mirror_module->get_log_size()) {
         break;
       }
-      if ((scan_cnt - start_cnt) % 300 == 0) {
-        do {
-          index = rand() % address_cnt;
-          faultaddr = addresses[index] * 4096;
+      if ((scan_cnt - start_cnt) % 100 == 99) {
+        //do {
+        //  index = rand() % address_cnt;
+        //  faultaddr = addresses[index] * 4096;
           //if((scan_cnt - start_cnt) % 30000 == 0)
           //  std::cout << "start_cnt: " << start_cnt << ", scan_cnt: " << scan_cnt << std::endl;
-        } while (selected[index]);
-        selected[index] = true;
+        //} while (selected[index]);
+        //selected[index] = true;
         result = worseErrorType(result, fd->genSystemRandomFaultAndTest(ecc, faultaddr, trace_address));
+
+        mirror_module->access();
+        trace_address = mirror_module->get_cur_trace_pfn() << 12;
+        trace_page_type = mirror_module->get_cur_trace_page_type();
+        scan_cnt++;
       }
       
       //ADDR faultaddr = -1;

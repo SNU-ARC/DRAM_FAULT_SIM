@@ -203,9 +203,9 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
       (devicesPerRank - (int)retiredChipIDList.size()) * pinsPerDevice -
           (int)retiredPinIDList.size(),
       blkHeight, message_config};
-  Fault *newFault;
-  ErrorType inject_result = NE;
-  ErrorType test_result = NE;
+  Fault *newFault = NULL;
+  ErrorType result = NE;
+  //ErrorType test_result = NE;
   // whether we try decode errors here by inherent fault or the other error
   // sources
 
@@ -213,34 +213,34 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
   // 1. generate a new fault
   //----------------------------------------------------------
   // std::string newFaultType = faultRateInfo->pickRandomType();
-  const std::pair<std::string, double> *newFaultType;
-  bool ByInherentFault = true;
-  if (faultaddr != -1) {
-    while (ByInherentFault) {
-      //newFaultType = faultRateInfo->pickRandomType();
-      newFaultType = faultRateInfo->pickRandomOperationalType();
-      // whether this test caused by (intermittent) inherent faults
-      ByInherentFault = (newFaultType->first == "inherent") ? true : false;
-    }
-  }
+  const std::pair<std::string, double> *newFaultType = faultRateInfo->pickRandomType();
+  bool ByInherentFault = (newFaultType->first == "inherent") ? true : false;
+  //if (faultaddr != -1) {
+  //  while (ByInherentFault) {
+  //    //newFaultType = faultRateInfo->pickRandomType();
+  //    newFaultType = faultRateInfo->pickRandomOperationalType();
+  //    // whether this test caused by (intermittent) inherent faults
+  //    ByInherentFault = (newFaultType->first == "inherent") ? true : false;
+  //  }
+  //}
 
   // Test failure by operational faults (address matching)
-  if (isFailed(traceaddr)) {
-    test_result = DUE;
-    activeFaultList.push_back(failedAddressList.find(traceaddr)->second);
-    operationalFaultList.push_back(failedAddressList.find(traceaddr)->second);
-  } else {
-    blk.reset();
-    if (inherentFault != NULL)
-      inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
-                                      ecc->chipRand);
-    test_result = worseErrorType(test_result, ecc->decode(this, blk));
+  //if (isFailed(traceaddr)) {
+  //  test_result = DUE;
+  //  activeFaultList.push_back(failedAddressList.find(traceaddr)->second);
+  //  operationalFaultList.push_back(failedAddressList.find(traceaddr)->second);
+  //} else {
+  //  blk.reset();
+  //  if (inherentFault != NULL)
+  //    inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
+  //                                    ecc->chipRand);
+  //  test_result = worseErrorType(test_result, ecc->decode(this, blk));
     // printf("inherent first, %d ", test_result);
-  }
+  //}
 
   if (!ByInherentFault) {
     newFault = Fault::genRandomFault(newFaultType->first, this);
-    newFault->setAddr(faultaddr);
+    //newFault->setAddr(faultaddr);
 
     /*	//GONG: retirement is currently not considered with inherent faults
         //----------------------------------------------------------
@@ -291,12 +291,13 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
       if (inherentFault != NULL)
         inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
                                        ecc->chipRand);
-      inject_result = worseErrorType(inject_result, ecc->decode(this, blk));
-      if (inject_result == DUE) {
-        failedAddressList.insert(std::pair<ADDR, Fault *>(faultaddr, newFault));
-      }
+      return result = worseErrorType(result, ecc->decode(this, blk));
+      //if (inject_result == DUE) {
+      //  if(newFault != NULL)
+      //    failedAddressList.insert(std::pair<ADDR, Fault *>(newFault->getAddr(), newFault));
+      //}
       // printf("inherent second, %d ", test_result);
-      return test_result;
+      //return test_result;
     }
   }
   int overlap_level = 0;
@@ -328,7 +329,7 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
     }
 
     newFault->genRandomError(&blk);
-    inject_result = worseErrorType(inject_result, ecc->decode(this, blk));
+    result = worseErrorType(result, ecc->decode(this, blk));
   } else {
     std::vector<Fault*> overlappedFaults = currentPossibleFaultList;
     overlappedFaults.push_back(newFault);
@@ -356,14 +357,14 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
         for (const auto& fault : combo) {
           fault->genRandomError(&blk);
         }
-        inject_result = worseErrorType(inject_result, ecc->decode(this, blk));
+        result = worseErrorType(result, ecc->decode(this, blk));
       }
     }
   }
 
 
   //GONG: fine-grained retirement is currently inactive/ignored.
-  if ((inject_result==CE)&&ecc->getDoRetire()&&ecc->needRetire(this, newFault))
+  if ((result==CE)&&ecc->getDoRetire()&&ecc->needRetire(this, newFault))
   {
     if (ecc->getMaxRetiredBlkCount() > 
                       retiredBlkCount+newFault->getAffectedBlkCount()){
@@ -381,11 +382,15 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
     }
   }
 
-  if (inject_result == DUE) {
-    failedAddressList.insert(std::pair<ADDR, Fault *>(faultaddr, newFault));
-  }
+  //if (inject_result == DUE) {
+  //  failedAddressList.insert(std::pair<ADDR, Fault *>(newFault->getAddr(), newFault));
+  //}
   // printf("inherent last, %d ", test_result);
-  return test_result;
+
+  if(!ByInherentFault)
+    return NE;
+
+  return result;
 #else
     auto faultEnd = operationalFaultList.rend();
     for (auto it1 = operationalFaultList.rbegin(); it1 != faultEnd; ++it1) {
@@ -736,7 +741,7 @@ void FaultDomain::retireChip(int chipID) {
 void FaultDomain::clear() {
   for (auto it = operationalFaultList.begin(); it != operationalFaultList.end();
        ++it) {
-    std::cout << *it << "," << std::endl;
+    //std::cout << *it << "," << std::endl;
     if(std::next(it) != operationalFaultList.end())
       delete *it;
   }

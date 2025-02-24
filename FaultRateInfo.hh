@@ -354,9 +354,13 @@ class FaultRateInfo {
     double draw = (double)rand() / RAND_MAX;
     double sum = .0;
     double total_sum = .0;
+    double inherent = .0;
     for (auto it = rateInfo.cbegin(); it != rateInfo.cend(); it++) {
       total_sum += (*it).second;
+      if((*it).first == "inherent")
+        inherent += (*it).second;
     }
+    //std::cout<< "operational: " << total_sum - inherent << ", inherent: " << inherent << std::endl;
     for (auto it = rateInfo.cbegin(); it != rateInfo.cend(); it++) {
       sum += (*it).second;
       if ((sum / totalRate) >= draw * (total_sum / totalRate)) {
