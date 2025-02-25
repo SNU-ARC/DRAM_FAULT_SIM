@@ -205,7 +205,6 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
       blkHeight, message_config};
   Fault *newFault = NULL;
   ErrorType result = NE;
-  //ErrorType test_result = NE;
   // whether we try decode errors here by inherent fault or the other error
   // sources
 
@@ -215,32 +214,9 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
   // std::string newFaultType = faultRateInfo->pickRandomType();
   const std::pair<std::string, double> *newFaultType = faultRateInfo->pickRandomType();
   bool ByInherentFault = (newFaultType->first == "inherent") ? true : false;
-  //if (faultaddr != -1) {
-  //  while (ByInherentFault) {
-  //    //newFaultType = faultRateInfo->pickRandomType();
-  //    newFaultType = faultRateInfo->pickRandomOperationalType();
-  //    // whether this test caused by (intermittent) inherent faults
-  //    ByInherentFault = (newFaultType->first == "inherent") ? true : false;
-  //  }
-  //}
-
-  // Test failure by operational faults (address matching)
-  //if (isFailed(traceaddr)) {
-  //  test_result = DUE;
-  //  activeFaultList.push_back(failedAddressList.find(traceaddr)->second);
-  //  operationalFaultList.push_back(failedAddressList.find(traceaddr)->second);
-  //} else {
-  //  blk.reset();
-  //  if (inherentFault != NULL)
-  //    inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
-  //                                    ecc->chipRand);
-  //  test_result = worseErrorType(test_result, ecc->decode(this, blk));
-    // printf("inherent first, %d ", test_result);
-  //}
 
   if (!ByInherentFault) {
     newFault = Fault::genRandomFault(newFaultType->first, this);
-    //newFault->setAddr(faultaddr);
 
     /*	//GONG: retirement is currently not considered with inherent faults
         //----------------------------------------------------------
@@ -288,9 +264,11 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
     } else {
       // no operational fault yet.
       blk.reset();
-      if (inherentFault != NULL)
+      if (inherentFault != NULL){
+        inherentFault->setAddr(traceaddr);
         inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
                                        ecc->chipRand);
+      }
       return result = worseErrorType(result, ecc->decode(this, blk));
       //if (inject_result == DUE) {
       //  if(newFault != NULL)
@@ -322,9 +300,11 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
   if (!overlap) {
     blk.reset();
     if (ByInherentFault) {
+      inherentFault->setAddr(traceaddr);
       inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
                                     ecc->chipRand);
     } else if (inherentFault != NULL) {
+      inherentFault->setAddr(traceaddr);
       inherentFault->genRandomError(&blk);
     }
 
@@ -347,9 +327,11 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
       if (overlap) {
         blk.reset();
         if (ByInherentFault) {
+          inherentFault->setAddr(traceaddr);
           inherentFault->genRandomErrors(&blk, faultRateInfo->iRate->getEP(),
                                         ecc->chipRand);
         } else if (inherentFault != NULL) {
+          inherentFault->setAddr(traceaddr);
           inherentFault->genRandomError(&blk);
         }
         // get length of combo
@@ -382,10 +364,6 @@ ErrorType FaultDomain::genSystemRandomFaultAndTest(ECC *ecc, ADDR faultaddr, ADD
     }
   }
 
-  //if (inject_result == DUE) {
-  //  failedAddressList.insert(std::pair<ADDR, Fault *>(newFault->getAddr(), newFault));
-  //}
-  // printf("inherent last, %d ", test_result);
 
   if(!ByInherentFault)
     return NE;
