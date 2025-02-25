@@ -53,6 +53,9 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "rs.hh"
 #include "Mirror.hh"
 
+#define INJECT_PERIOD 100
+#define TEST_LENGTH 2500
+
 volatile bool killflag = false;
 
 //------------------------------------------------------------------------------
@@ -360,7 +363,7 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
       if (scan_cnt >= mirror_module->get_log_size()) {
         break;
       }
-      if ((scan_cnt - start_cnt) % 100 == 99) {
+      if ((scan_cnt - start_cnt) % INJECT_PERIOD == INJECT_PERIOD - 1) {
         //do {
         //  index = rand() % address_cnt;
         //  faultaddr = addresses[index] * 4096;
@@ -374,6 +377,8 @@ void TesterSystem::test(DomainGroup *dg, ECC *ecc, Scrubber *scrubber,
         trace_address = mirror_module->get_cur_trace_pfn() << 12;
         trace_page_type = mirror_module->get_cur_trace_page_type();
         scan_cnt++;
+        if((scan_cnt - start_cnt) / INJECT_PERIOD == TEST_LENGTH)
+          break;
       }
       
       //ADDR faultaddr = -1;
